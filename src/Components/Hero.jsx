@@ -66,7 +66,7 @@ function Hero() {
                 }
                 //close the brackets
                 else if (window.scrollY >= offsetContact - 0.7 * window.innerHeight) {
-                    transformBracket("2.2rem", "-2.2rem");
+                    transformBracket("2.3rem", "-2.3rem");
                     setSectionText("");
                     if (window.innerWidth < 586) {
                         glasses.style.transform = "translateY(0) scale(0.6, 0.6)";
@@ -92,7 +92,7 @@ function Hero() {
                 }
                 //close the brackets
                 else if (window.scrollY >= 4 * offsetGallery / 5) {
-                    transformBracket("2.2rem", "-2.2rem");
+                    transformBracket("2.3rem", "-2.3rem");
                     setSectionText("");
                 }
                 //when reaching the project section
