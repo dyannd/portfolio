@@ -56,7 +56,7 @@ function Hero() {
                     setSectionText("Contacts");
                     //bring the glasses above the contact text
                     if (window.innerWidth < 586) {
-                        glasses.style.transform = "translateY(25vh) translateX(0.4rem) scale(1.2, 1.2)";
+                        glasses.style.transform = "translateY(29vh) translateX(0.4rem) scale(1.2, 1.2)";
                     } else {
                         glasses.style.transform = "translateY(29vh) translateX(1rem) scale(1.2, 1.2)";
                     }

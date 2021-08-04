@@ -775,10 +775,8 @@
                     .gallery {
                         @include section-config();
                         @include center-parents();
-                        flex-direction: column;
                         overflow: hidden;
                         transition: opacity 1.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-                        padding-top: $top;
                         .video-wrapper {
                             @include center-parents();
                             width: 50vw;
@@ -1030,6 +1028,8 @@
                             }
                         }
                         .gallery {
+                            flex-direction: column;
+                            padding-top: $top;
                             .video-wrapper {
                                 width: 100vw;
                                 height: 70vh;
