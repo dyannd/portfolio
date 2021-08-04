@@ -5,40 +5,29 @@ import { Link } from 'react-scroll';
 function Nav(props) {
     const [openMenu, setOpenMenu] = useState(false);
     const [currentPath, setCurrentPath] = useState("");
-    const [ray, setRay] = useState("");
-    const [rayWidth, setRayWidth] = useState("");
-    const [rayLeft, setRayLeft] = useState("");
     const prevPath = useRef("");
     useEffect(() => {
         setCurrentPath(props.section);
         prevPath.current = currentPath;
     }, [props.section, currentPath]);
 
-    useEffect(() => {
-        setRay(props.ray);
-    }, [props.ray]);
-
-    useEffect(() => {
-        setRayWidth(props.rayPos.width);
-        setRayLeft(props.rayPos.left);
-
-    }, [props.rayPos]);
-
-
 
     return (
         <div className="nav" >
-            <TransitionGroup className="smallheader-wrapper">
-                <CSSTransition key={currentPath} classNames="merge" timeout={300}>
-                    <div className="section-smallheader">
-                        {currentPath === "holo" ? <figure className="holo-dot"></figure>
-                            : currentPath === "ray" ? prevPath.current : currentPath}
-                    </div>
-                </CSSTransition>
-            </TransitionGroup>
-            {ray ?
-                <div className="ray" style={{ left: rayLeft, width: rayWidth }}></div>
-                : null}
+            <div className="smallheader-wrapper">
+                <div className="section-smallheader">
+                    <p className="bracket bracket-left">{"<"}</p>
+                    <TransitionGroup className="main-text">
+                        <CSSTransition key={currentPath} classNames="merge" timeout={300}>
+                            {currentPath === "holo" ? <figure className="holo-dot"></figure>
+                                :<p >{currentPath}</p>}
+                        </CSSTransition>
+                    </TransitionGroup>
+                    <p className="bracket bracket-right">{"/>"}</p>
+                </div>
+            </div>
+
+
 
             <div className="glasses">
                 <div className="glass glass-left">
@@ -137,7 +126,7 @@ function Nav(props) {
                     </div>
                 </button>
             </div>
-        </div>
+        </div >
     )
 }
 

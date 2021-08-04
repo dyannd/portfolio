@@ -1,20 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 function Loader(props) {
 
-    const [loading, setLoading] = useState(false);
 
-    function setTimer() {
-        setLoading(true);
+    useEffect(()=> {
         setTimeout(() => {
-            setLoading(false);
             props.handleLoading(false);
-        }, 7200);
-  
-    }
+        }, 5200);
+    });
     
     return (
         <div className="loader" >
-            {loading ?
                 <div className="compile-text-wrapper">
                     <p>{">. Anh"}</p>
                     <div className="compile-text-mask">
@@ -23,9 +18,6 @@ function Loader(props) {
                         <div className="blip bottom"></div>
                     </div>
                 </div>
-                : <div className="compile-text-wrapper" onClick={setTimer}>
-                <p>Touch to compile</p>
-                </div>}
         </div >
     )
 }
