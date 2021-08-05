@@ -79,14 +79,14 @@ function Projects(props) {
                         </div>
                         <div className="text-des" style={{ opacity: showDes3 ? "1" : "0" }}>
                             <p>A basic React app that I built to provide basic information of a country's pandemic situation including
-                                cases, recovered, and deaths by fetching pandemic information API from a public API </p>
+                                cases, recovered, and deaths by fetching pandemic information from a public API </p>
                             <p>
                                 This is my first attempt to use React in my application, as well as my first practice to make requests
                                 to public APIs. I mainly practiced with updating states and components when a new result from the API 
                                 fetch is received, as well as using Axios to call APIs.
                             </p>
                             <p>
-                                Another great things that I learned was to implement transition between React states using Transision Group.    
+                                Another great things that I learned was to implement transition between React states using Transition Group library.    
                             </p>
                         </div>
                     </div>
