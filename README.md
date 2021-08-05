@@ -7,4 +7,4 @@ $git clone https://github.com/dyannd/portfolio.git
 $npm install 
 ```
 Deployed build on Netlify. View my portfolio on www.dyannd.com !
-## feel free to use my Portfolio as a template, must be sure to give me credit!
+## feel free to use my Portfolio as a template, just be sure to give me credit!
