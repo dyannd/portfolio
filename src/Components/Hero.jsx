@@ -50,24 +50,27 @@ function Hero() {
                 setTrailTop(Math.floor(offsetBall + ball.clientHeight / 1.3) + "px");
 
                 //when reaching the contact section
-                if (window.scrollY >= offsetContact - 0.5 * window.innerHeight) {
+                if (window.scrollY >= offsetContact - 0.6 * window.innerHeight) {
                     transformBracket(0, 0);
                     header.style.width = "6.8rem";
                     setSectionText("Contacts");
                     //bring the glasses above the contact text
                     if (window.innerWidth < 586) {
-                        glasses.style.transform = "translateY(29vh) translateX(0.4rem) scale(1.2, 1.2)";
+                        glasses.style.transform = "translateY(29vh) translateX(0.5vh) scale(1.2, 1.2)";
                     } else {
-                        glasses.style.transform = "translateY(29vh) translateX(1rem) scale(1.2, 1.2)";
+                        glasses.style.transform = "translateY(29vh) translateX(1.2vh) scale(1.2, 1.2)";
                     }
                     //make the eye looks to the center
                     eye.forEach((eye) => eye.style.right = "0");
+                    //make opacity of gallery low
                     gallery.style.opacity = "0.2";
                 }
                 //close the brackets
-                else if (window.scrollY >= offsetContact - 0.7 * window.innerHeight) {
+                else if (window.scrollY >= offsetContact - 0.8 * window.innerHeight) {
                     transformBracket("2.3rem", "-2.3rem");
+                    header.style.width = "6.5rem";
                     setSectionText("");
+                    //bring the glasses back to the navbar
                     if (window.innerWidth < 586) {
                         glasses.style.transform = "translateY(0) scale(0.6, 0.6)";
                     }
@@ -79,7 +82,6 @@ function Hero() {
                 else if (window.scrollY >= offsetGallery - 1) {
                     transformBracket(0, 0);
                     setSectionText("Gallery");
-                    gallery.style.opacity = "1";
                     //take glasses back to original pos
                     if (window.innerWidth < 586) {
                         glasses.style.transform = "translateY(0) scale(0.6, 0.6)";
@@ -89,6 +91,8 @@ function Hero() {
                     }
                     //make the eye looks normally
                     eye.forEach(eye => eye.style.right = "-0.9rem");
+                    //make opacity of gallery back to normal
+                    gallery.style.opacity = "1";
                 }
                 //close the brackets
                 else if (window.scrollY >= 4 * offsetGallery / 5) {
@@ -104,22 +108,25 @@ function Hero() {
                 //close the brackets
                 else if (window.scrollY >= 4 * offsetProject / 5) {
                     transformBracket("1.8rem", "-1.8rem");
-                    setSectionText("");
                     header.style.width = "5.5rem";
+                    setSectionText("");
                 }
                 //when reaching the about section;
                 else if (window.scrollY >= offsetAbout - 1) {
+                    transformBracket(0, 0);
                     setSectionText("About");
+                    //set trail back to none and hide the holo ball
                     setTrailHeight(0 + "px");
                     setShowHolo(false);
-                    transformBracket(0, 0);
                 }
                 //transform heading to a ball at the button
                 else if (window.scrollY >= offsetBall - 25) {
-                    setSectionText("holo");
-                    setTrailHeight(Math.floor(trailHeight) + "px");
-                    setShowHolo(true);
                     transformBracket(0, 0);
+                    //make the holo appears instead of "HOme"
+                    setSectionText("holo");
+                    setShowHolo(true);
+                    //make the "path" appear
+                    setTrailHeight(Math.floor(trailHeight) + "px");
                 }
                 //close the brackets
                 else if (window.scrollY >= offsetBall - 125) {
@@ -129,9 +136,9 @@ function Hero() {
                 //at home
                 else {
                     setSectionText("Home");
+                    transformBracket(0, 0);
                     setTrailHeight("0px");
                     setShowHolo(false);
-                    transformBracket(0, 0);
                 }
             })
 
@@ -184,7 +191,7 @@ function Hero() {
                         setShowDes3={setShowDes3}
                     />
                     <Gallery />
-                    <Contacts/>
+                    <Contacts />
                 </div>}
         </>
     )

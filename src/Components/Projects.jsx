@@ -56,7 +56,8 @@ function Projects(props) {
                                 the sense that it uses Pool to illustrate Physics. Go ahead and explore the app :)</p>
                             <p>
                                 The tech stack used being HTML, CSS, Bootstrap, and jQuery. My main focus was to use CSS and jQuery to create
-                                interactive animations. Furthermore, I also implemented Bootstrap for mobile-friendliness.
+                                interactive animations (i.e. The interaction between of the pool stick and the balls)
+                                . Furthermore, I also implemented Bootstrap for mobile-friendliness.
                             </p>
                         </div>
                     </div>
@@ -83,6 +84,9 @@ function Projects(props) {
                                 This is my first attempt to use React in my application, as well as my first practice to make requests
                                 to public APIs. I mainly practiced with updating states and components when a new result from the API 
                                 fetch is received, as well as using Axios to call APIs.
+                            </p>
+                            <p>
+                                Another great things that I learned was to implement transition between React states using Transision Group.    
                             </p>
                         </div>
                     </div>
