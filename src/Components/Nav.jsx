@@ -5,6 +5,7 @@ import { Link } from 'react-scroll';
 function Nav(props) {
     const [openMenu, setOpenMenu] = useState(false);
     const [currentPath, setCurrentPath] = useState("");
+    const width = props.width;
     const prevPath = useRef("");
     useEffect(() => {
         setCurrentPath(props.section);
@@ -13,14 +14,14 @@ function Nav(props) {
 
 
     return (
-        <div className="nav" >
+        <div className="nav">
             <div className="smallheader-wrapper">
                 <div className="section-smallheader">
                     <p className="bracket bracket-left">{"<"}</p>
                     <TransitionGroup className="main-text">
                         <CSSTransition key={currentPath} classNames="merge" timeout={300}>
                             {currentPath === "holo" ? <figure className="holo-dot"></figure>
-                                :<p >{currentPath}</p>}
+                                : <p >{currentPath}</p>}
                         </CSSTransition>
                     </TransitionGroup>
                     <p className="bracket bracket-right">{"/>"}</p>
@@ -107,25 +108,53 @@ function Nav(props) {
                 </div>
             </div>
 
-
-            <div className="nav-select">
-                <button className="drawer-button"
-                    onClick={() => {
-                        setOpenMenu(prev => !prev);
-                    }}>
-                    <div className="stick-figure">
-                        <div className={openMenu ? "stick mid open" : "stick mid"}
-                            style={{ backgroundColor: openMenu ? "#12111a" : "" }}>
+            {width > 1000 ?
+                <div className="nav-menu-desktop">
+                    <Link to="Home"
+                        smooth="easeInOutCubic"
+                        duration={2500}
+                    > Home
+                    </Link>
+                    <Link to="About"
+                        smooth="easeInOutCubic"
+                        duration={2500}>
+                        About
+                    </Link>
+                    <Link to="Projects"
+                        smooth="easeInOutCubic"
+                        duration={2500}>
+                        Projects
+                    </Link>
+                    <Link to="Gallery"
+                        smooth="easeInOutCubic"
+                        duration={2500}>
+                        Gallery
+                    </Link>
+                    <Link to="Contacts"
+                        smooth="easeInOutCubic"
+                        duration={2500}>
+                        Contacts
+                    </Link>
+                </div>
+                : <div className="nav-select">
+                    <button className="drawer-button"
+                        onClick={() => {
+                            setOpenMenu(prev => !prev);
+                        }}>
+                        <div className="stick-figure">
+                            <div className={openMenu ? "stick mid open" : "stick mid"}
+                                style={{ backgroundColor: openMenu ? "#12111a" : "" }}>
+                            </div>
+                            <div className={openMenu ? "stick top open" : "stick top "}
+                                style={{ backgroundColor: openMenu ? "#12111a" : "" }}>
+                            </div>
+                            <div className={openMenu ? "stick bottom open" : "stick bottom"}
+                                style={{ backgroundColor: openMenu ? "#12111a" : "" }}>
+                            </div>
                         </div>
-                        <div className={openMenu ? "stick top open" : "stick top "}
-                            style={{ backgroundColor: openMenu ? "#12111a" : "" }}>
-                        </div>
-                        <div className={openMenu ? "stick bottom open" : "stick bottom"}
-                            style={{ backgroundColor: openMenu ? "#12111a" : "" }}>
-                        </div>
-                    </div>
-                </button>
-            </div>
+                    </button>
+                </div>
+            }
         </div >
     )
 }
