@@ -211,7 +211,8 @@
                         left: 4.6rem;
                         right: 5rem;
                         height: $top;
-                        animation: fade 500ms cubic-bezier(0.165, 0.84, 0.44, 1) 200ms forwards;
+                        animation: fade 1000ms cubic-bezier(0.165, 0.84, 0.44, 1) 200ms forwards;
+                        opacity: 0;
                         &:hover {
                             ~.hero-contents {
                                 opacity: 0.2;
@@ -467,7 +468,7 @@
                                 transform: translateY(8rem);
                                 font-size: 6rem;
                                 font-weight: normal;
-                                animation: floatup 800ms cubic-bezier(0.165, 0.84, 0.44, 1) 800ms forwards;
+                                animation: floatup 800ms cubic-bezier(0.165, 0.84, 0.44, 1) 1000ms forwards;
                             }
                             h5 {
                                 position: relative;
@@ -475,7 +476,7 @@
                                 transform: translateY(8rem);
                                 font-size: 1.5rem;
                                 font-weight: lighter;
-                                animation: floatup 800ms cubic-bezier(0.165, 0.84, 0.44, 1) 1000ms forwards;
+                                animation: floatup 800ms cubic-bezier(0.165, 0.84, 0.44, 1) 1200ms forwards;
                             }
                             .hider {
                                 height: 8rem;
@@ -505,7 +506,7 @@
                         background: transparent;
                         border-radius: 50%;
                         opacity: 0;
-                        animation: fade 1200ms cubic-bezier(0.165, 0.84, 0.44, 1) 1500ms forwards;
+                        animation: fade 1200ms cubic-bezier(0.165, 0.84, 0.44, 1) 2000ms forwards;
                         &:hover {
                             i {
                                 @include med-icon();
