@@ -28,15 +28,16 @@ function About({width}) {
                         I'm Anh, a 21 years-old Physics student who loves to explore new concepts.
                         I love doing works involving problem-solving and critical-thinking.
                     </p>
+                    <p className="comment-description" data-aos="fade-up" data-aos-duration="1400">
+                        / / I am currently learning web development, with a 
+                        focus on the MERN stack, but I would
+                        be non-hesistant to explore any new technologies!
+                    </p>
                     <p className="comment-description" data-aos="fade-up" data-aos-duration="1200">
                         / /  I like to make things that are visually pleasing in general.
                         When not doing Physics, I study programming, and take photo/video gigs.
                     </p>
-                    <p className="comment-description" data-aos="fade-up" data-aos-duration="1400">
-                        / / I am currently learning web development, with a focus on front-end. I am
-                        familiarized with the MERN stack, but I
-                        be non-hesistant to explore any new technologies!
-                    </p>
+                 
                     <p className="comment-description" data-aos="fade-up" data-aos-duration="1600">
                         / / What I know:
                     </p>
