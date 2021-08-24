@@ -16,9 +16,6 @@ function Hero() {
     const [showHolo, setShowHolo] = useState(false);
     const [trailTop, setTrailTop] = useState(0);
     const [width, setWidth] = useState(window.innerWidth);
-    const [showDes1, setShowDes1] = useState(false);
-    const [showDes2, setShowDes2] = useState(false);
-    const [showDes3, setShowDes3] = useState(false);
 
     useEffect(() => {
         if (!isLoading) {
@@ -183,14 +180,7 @@ function Hero() {
                             {showHolo ? <p>About</p> : null}
                         </section>
                         <About width={width} />
-                        <Projects
-                            showDes1={showDes1}
-                            showDes2={showDes2}
-                            showDes3={showDes3}
-                            setShowDes1={setShowDes1}
-                            setShowDes2={setShowDes2}
-                            setShowDes3={setShowDes3}
-                        />
+                        <Projects />
                         <Gallery />
                         <Contacts />
                     </div>

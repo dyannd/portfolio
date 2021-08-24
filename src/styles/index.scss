@@ -62,12 +62,12 @@
                     
                     @mixin medium-frame-child {
                         width: 80%;
-                        height: 80%;
+                        height: 65%;
                     }
                     
                     @mixin small-frame-child {
                         width: 88%;
-                        height: 75%;
+                        height: 85%;
                     }
                     
                     @mixin full-child {
@@ -723,25 +723,28 @@
                                     .project-picture {
                                         position: absolute;
                                         z-index: -1;
-                                        width: 800px;
+                                        width: 1300px;
                                         height: 1000px;
                                         object-fit: cover;
                                         opacity: 0.6;
                                     }
                                     //for each project
+                                    #hcmusrobotics {
+                                        background-image: url("./robotics.JPG");
+                                        background-size: 100%;
+                                        transform: rotate(15deg) skew(-20deg) translateX(-60%) translateY(2%);
+                                    }
                                     #issuetracker {
                                         background-image: url("./signin.JPG");
-                                        background-size: 140%;
-                                        transform: rotate(15deg) skew(-20deg) translateX(-34%) translateY(-11%);
+                                        background-repeat: repeat;
+                                        transform: rotate(15deg) skew(-20deg) translateX(-30%) translateY(-20%);
                                     }
                                     #lawsofmotion {
                                         background-image: url("./lawsofmotion.JPG");
-                                        background-size: 140%;
-                                        transform: rotate(15deg) skew(-20deg) translateX(-31%) translateY(-8%);
+                                        transform: rotate(15deg) skew(-20deg) translateX(-30%) translateY(-20%);
                                     }
                                     #covidtracker {
                                         background-image: url("./covidtracker.JPG");
-                                        background-size: 120%;
                                         transform: rotate(15deg) skew(-20deg) translateX(-30%) translateY(-8%);
                                     }
                                 }
@@ -1030,19 +1033,16 @@
                                     @include medium-frame-child();
                                     .picture-wrapper {
                                         .project-picture {
-                                            width: 200%;
+                                            background-size: 130%;
                                         }
                                         #issuetracker {
-                                            background-size: 120%;
-                                            transform: rotate(15deg) skew(-20deg) translateX(-34%) translateY(-6%);
+                                            transform: rotate(15deg) skew(-20deg) translateX(-30%) translateY(-10%);
                                         }
                                         #lawsofmotion {
-                                            background-size: 120%;
-                                            transform: rotate(15deg) skew(-20deg) translateX(-30%) translateY(-8%);
+                                            transform: rotate(15deg) skew(-20deg) translateX(-25%) translateY(-8%);
                                         }
                                         #covidtracker {
-                                            background-size: 120%;
-                                            transform: rotate(15deg) skew(-20deg) translateX(-32%) translateY(-8%);
+                                            transform: rotate(15deg) skew(-20deg) translateX(-30%) translateY(-5%);
                                         }
                                     }
                                     .project-des {
@@ -1135,19 +1135,16 @@
                                     @include small-frame-child();
                                     .picture-wrapper {
                                         .project-picture {
-                                            width: 250%;
+                                            background-size: 120%;
                                         }
                                         #issuetracker {
-                                            background-size: 140%;
-                                            transform: rotate(15deg) skew(-20deg) translateX(-55%) translateY(-7%);
+                                            transform: rotate(15deg) skew(-20deg) translateX(-40%) translateY(-1%);
                                         }
                                         #lawsofmotion {
-                                            background-size: 120%;
-                                            transform: rotate(15deg) skew(-20deg) translateX(-40%) translateY(-5%);
+                                            transform: rotate(15deg) skew(-20deg) translateX(-35%) translateY(-20%);
                                         }
                                         #covidtracker {
-                                            background-size: 110%;
-                                            transform: rotate(15deg) skew(-20deg) translateX(-45%) translateY(-5%);
+                                            transform: rotate(15deg) skew(-20deg) translateX(-46%) translateY(-5%);
                                         }
                                     }
                                     .project-des {
