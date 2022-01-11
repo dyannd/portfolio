@@ -732,7 +732,7 @@
                                     #hcmusrobotics {
                                         background-image: url("./robotics.JPG");
                                         background-size: 100%;
-                                        transform: rotate(15deg) skew(-20deg) translateX(-60%) translateY(2%);
+                                        transform: rotate(15deg) skew(-20deg) translateX(-50%) translateY(-5%);
                                     }
                                     #issuetracker {
                                         background-image: url("./signin.JPG");
@@ -1035,6 +1035,9 @@
                                         .project-picture {
                                             background-size: 130%;
                                         }
+                                        #hcmusrobotics {
+                                            transform: rotate(15deg) skew(-20deg) translateX(-45%) translateY(-5%);
+                                        }
                                         #issuetracker {
                                             transform: rotate(15deg) skew(-20deg) translateX(-30%) translateY(-10%);
                                         }
@@ -1136,6 +1139,9 @@
                                     .picture-wrapper {
                                         .project-picture {
                                             background-size: 120%;
+                                        }
+                                        #hcmusrobotics {
+                                            transform: rotate(15deg) skew(-20deg) translateX(-60%) translateY(-5%);
                                         }
                                         #issuetracker {
                                             transform: rotate(15deg) skew(-20deg) translateX(-40%) translateY(-1%);
