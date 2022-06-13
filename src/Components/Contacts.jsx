@@ -25,7 +25,7 @@ function Contacts() {
                     </a>
 
                 </div>
-                <p>© Anh D Nguyen 2021</p>
+                <p>© Anh D Nguyen 2022</p>
             </div>
         </section >
     )

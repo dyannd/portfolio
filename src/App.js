@@ -8,6 +8,7 @@ function App() {
     return (
         <Router>
             <div className="App" >
+                
                     <Route exact path="/" component={Hero} />
             </div>
         </Router >
