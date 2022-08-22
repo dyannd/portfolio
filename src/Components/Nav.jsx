@@ -17,14 +17,20 @@ function Nav(props) {
         <div className="nav">
             <div className="smallheader-wrapper">
                 <div className="section-smallheader">
-                    <p className="bracket bracket-left">{"<"}</p>
+                    {/* <p className="bracket bracket-left">{"<"}</p> */}
                     <TransitionGroup className="main-text">
                         <CSSTransition key={currentPath} classNames="merge" timeout={300}>
-                            {currentPath === "holo" ? <figure className="holo-dot"></figure>
-                                : <p >{currentPath}</p>}
+                            {/* {currentPath === "holo" ? <figure className="holo-dot"></figure> */}
+                            {currentPath === "Home" ? <p >Welcome!</p> :
+                                currentPath === "About" ? <p>{'Who I am'}</p> :
+                                    currentPath === "Projects" ? <p>What I made</p> :
+                                        currentPath === "Contacts" ? <p>Contact me</p> : <p></p>}
+                                    
+                            
                         </CSSTransition>
                     </TransitionGroup>
-                    <p className="bracket bracket-right">{"/>"}</p>
+                    {/* <p className="bracket bracket-right">{"/>"}</p> */}
+        
                 </div>
             </div>
 
@@ -83,7 +89,7 @@ function Nav(props) {
                                 Projects
                             </Link>
                         </li>
-                        <li className={openMenu ? "slideleft" : "slideright"}
+                        {/* <li className={openMenu ? "slideleft" : "slideright"}
                             style={{ transitionDelay: "0.09s" }}
                         >
                             <Link to="Gallery"
@@ -93,7 +99,7 @@ function Nav(props) {
                                     setOpenMenu(prev => !prev);
                                 }}>Gallery</Link>
 
-                        </li>
+                        </li> */}
                         <li className={openMenu ? "slideleft" : "slideright"}
                             style={{ transitionDelay: "0.11s" }}
                         >
@@ -125,11 +131,11 @@ function Nav(props) {
                         duration={2500}>
                         Projects
                     </Link>
-                    <Link to="Gallery"
+                    {/* <Link to="Gallery"
                         smooth="easeInOutCubic"
                         duration={2500}>
                         Gallery
-                    </Link>
+                    </Link> */}
                     <Link to="Contacts"
                         smooth="easeInOutCubic"
                         duration={2500}>
@@ -143,13 +149,13 @@ function Nav(props) {
                         }}>
                         <div className="stick-figure">
                             <div className={openMenu ? "stick mid open" : "stick mid"}
-                                style={{ backgroundColor: openMenu ? "#12111a" : "" }}>
+                                style={{ backgroundColor: openMenu ? "#FFFFFF" : "" }}>
                             </div>
                             <div className={openMenu ? "stick top open" : "stick top "}
-                                style={{ backgroundColor: openMenu ? "#12111a" : "" }}>
+                                style={{ backgroundColor: openMenu ? "#FFFFFF" : "" }}>
                             </div>
                             <div className={openMenu ? "stick bottom open" : "stick bottom"}
-                                style={{ backgroundColor: openMenu ? "#12111a" : "" }}>
+                                style={{ backgroundColor: openMenu ? "#FFFFFF" : "" }}>
                             </div>
                         </div>
                     </button>

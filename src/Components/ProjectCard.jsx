@@ -5,25 +5,34 @@ function ProjectCard(props) {
     const [showDes, setShowDes] = useState(false);
     return (
         <div className="project-wrapper"
+            id={id}
             data-aos="fade-right" data-aos-duration="1000"
-            data-aos-anchor-placement="center-bottom">
-            <div className="project">
-                <div className="picture-wrapper">
-                    <div className="project-picture" id={id}>
-                    </div>
-                </div>
-                <div className="project-des" onMouseOver={() => setShowDes(true)} onMouseLeave={() => setShowDes(false)}>
-                    <h1>{title}</h1>
+            data-aos-anchor-placement="top-bottom">
 
-                    <div className="icon-wrapper">
-                        <a target="_blank" rel="noreferrer" href={weblink}><i className="fas fa-globe"></i></a>
-                        <a target="_blank" rel="noreferrer" href={github}><i className="fab fa-github"></i></a>
-                    </div>
-                    <div className="text-des" style={{ opacity: showDes ? "1" : "0" }}>
-                        {descriptions.map(des => <p>{des}</p>)}
+            <div className="project">
+                <div className="picture-wrapper" style={{ filter: showDes ? "grayscale(0%)" : "grayscale(100%)" }} onMouseOver={() => setShowDes(true)} onMouseLeave={() => setShowDes(false)}>
+                    <div className="project-des" >
+                        <div className="icon-wrapper">
+                            <h1
+                                onClick={() => window.open(github, "_blank")}
+                                className="github-link"
+                            >
+                                {'GITHUB '}
+                                <i className="fa-solid fa-arrow-right"></i> </h1>
+                        </div>
                     </div>
                 </div>
+
+
+                <h1
+                    onClick={() => window.open(weblink, "_blank")}
+                    className="project-title"
+                >
+                    {title + " "}
+                    <i className="fa-solid fa-arrow-right"></i>
+                </h1>
             </div>
+
         </div>
     )
 }

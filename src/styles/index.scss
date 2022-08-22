@@ -1,19 +1,28 @@
                     @import "./font/fontTTHoves.css";
                     //some default stuffs
-                    $light-grey:#B1BAC7;
-                    $dark-blue:#12111a;
-                    $cyan-blue:#91DEFB;
-                    $light-navy:#474559;
-                    $orange:#b35e46;
-                    $yellow:#b3844f;
-                    $green:#77a186;
-                    $blue:#2c3cb0;
-                    $top:100px;
-                    $heading:4rem;
-                    $mobile-heading:2rem;
-                    $med-text:1.1rem;
-                    $normal-text:1rem;
-                    $normal-text-mobile:0.9rem;
+                    $light-grey: #B1BAC7;
+                    $dark-blue: #12111a;
+                    $abs-white: #FFFFFF;
+                    $abs-black: #000000;
+                    $cyan-blue: #91DEFB;
+                    $light-navy: #474559;
+                    $dark-grey: #858585;
+                    $orange: #b35e46;
+                    $yellow: #b3844f;
+                    $green: #77a186;
+                    $blue: #2c3cb0;
+                    $top: 80px;
+                    $heading: 8em;
+                    $small-text: 0.9em;
+                    $normal-text: 1em;
+                    $med-text: 1.5em;
+                    $big-text: 3em;
+                    $grid-side: 16vw;
+                    $column-gap: 0.5vw;
+                    $row-gap: 3vw;
+                    $nav-paddings: 5vw;
+                    $section-size-mobile: calc(100vw - 2*#{$nav-paddings});
+
                     //config for every page (big section)
                     @mixin section-config {
                         min-height: 100vh;
@@ -21,12 +30,12 @@
                         max-width: 100vw;
                         margin: 0;
                         padding: 0;
-                        font-family: "TT Hoves", sans-serif;
-                        background-color: $dark-blue;
-                        color: $light-grey;
+                        font-family: "Manrope", sans-serif;
+                        background-color: $abs-white;
+                        color: $abs-black;
                         overflow-x: hidden;
                     }
-                    
+
                     //for centered absolute div
                     @mixin absolute-center {
                         position: absolute;
@@ -36,7 +45,7 @@
                         right: 0;
                         margin: auto;
                     }
-                    
+
                     //center any div inside it
                     @mixin center-parents {
                         display: flex;
@@ -44,89 +53,98 @@
                         text-align: center;
                         justify-content: space-between;
                     }
-                    
+
                     //center on parents
                     @mixin center-elements {
                         margin: auto;
                     }
-                    
+
                     @mixin medium-frame {
                         width: 100vw;
                         height: 70vh;
                     }
-                    
+
                     @mixin small-frame {
                         width: 100vw;
                         height: 55vh;
                     }
-                    
-                    @mixin medium-frame-child {
-                        width: 80%;
-                        height: 65%;
-                    }
-                    
-                    @mixin small-frame-child {
-                        width: 88%;
-                        height: 85%;
-                    }
-                    
-                    @mixin full-child {
-                        width: 100%;
-                        height: 100%;
-                    }
-                    
+
+
+
                     @mixin med-icon {
                         transform: scale(2, 2);
                     }
-                    
+
                     @mixin big-icon {
                         transform: scale(3, 3);
                     }
-                    
+
+                    //config for big section
                     html,
                     body,
                     .App {
                         @include section-config();
                     }
-                    
+
+                    //Scrollbar settings
+                    html {
+
+                        /* width */
+                        ::-webkit-scrollbar {
+                            width: 10px;
+                        }
+
+                        /* Handle */
+                        ::-webkit-scrollbar-thumb {
+                            background: $abs-black;
+                        }
+
+                    }
+
                     //make then links free from underline.
                     a {
                         cursor: pointer;
                         text-decoration: none;
+
                         &:visited {
                             color: inherit;
                         }
                     }
-                    
+
+                    //icons transition 
+                    i {
+                        transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+                    }
+
                     //custom colorfill button
                     .button-colorfill {
                         margin: auto;
-                        background-color: transparent;
-                        background-image: linear-gradient(to right, transparent 40%, $orange 41%, $orange 60%, $cyan-blue 61%, $cyan-blue 100%);
-                        background-size: 300%;
-                        background-position: left;
-                        font-weight: bold;
-                        border: solid $cyan-blue 1px;
+                        background-image: linear-gradient(to bottom, $abs-white 40%, $dark-grey 41%, $dark-grey 59%, $abs-black 60%, $abs-black 100%);
+                        background-size: 102% 300%;
+                        background-position: top;
+                        font-weight: lighter;
+                        font-family: "Manrope", sans-serif;
+                        font-size: $normal-text;
+                        border: none;
+                        border-bottom: solid $abs-white 3px;
                         border-radius: 0;
                         padding: 0.5rem 1.5rem;
                         transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
-                        a {
-                            color: $cyan-blue;
-                            transition: all 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
-                        }
+                        color: $abs-black;
+                        cursor: pointer;
+
                         &:hover {
-                            background-position: right;
-                            a {
-                                color: $dark-blue;
-                            }
+                            background-position: bottom;
+                            color: $abs-white;
                         }
                     }
-                    
-                    //loading stuffs
+
+                    //loading stuffs (first page when refresh)
                     .loader {
                         @include section-config();
                         @include center-parents();
-                        background: $cyan-blue;
+                        background: $abs-black;
+
                         //the centered section of the page
                         .compile-text-wrapper {
                             margin: auto;
@@ -134,67 +152,125 @@
                             height: 5rem;
                             transition: all 0.5s;
                             position: relative;
+
                             //My name
                             p {
                                 @include absolute-center();
-                                font-size: 1.5rem;
-                                color: $orange;
+                                font-size: $med-text;
+                                color: $abs-white;
                                 height: 1.5rem;
                                 cursor: pointer;
                             }
+
                             //the big blip is splitted into 3 smaller ones, each height of 0.6rem, for a total of 1.8rem
                             div {
                                 @include absolute-center();
                                 width: 5rem;
                                 height: 1.8rem;
+
                                 .blip {
                                     height: 0.6rem;
-                                    border-left: $dark-blue solid 2px;
-                                    background-color: $cyan-blue;
+                                    border-left: $abs-white solid 2px;
+                                    background-color: $abs-black;
                                     position: relative;
+                                    -webkit-animation: blip 0.8s infinite, reveal 0.5s linear 1.2s forwards, select 0.1s linear 3s forwards, loading 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) 3.5s 3 forwards, zoom 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) 5s forwards;
                                     animation: blip 0.8s infinite, reveal 0.5s linear 1.2s forwards, select 0.1s linear 3s forwards, loading 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) 3.5s 3 forwards, zoom 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) 5s forwards;
                                 }
+
                                 .top.blip {
                                     top: 0;
+                                    -webkit-animation: blip 0.8s infinite, reveal 0.5s linear 1.2s forwards, select 0.1s linear 3s forwards, loading 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) 3.4s 3 forwards;
                                     animation: blip 0.8s infinite, reveal 0.5s linear 1.2s forwards, select 0.1s linear 3s forwards, loading 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) 3.4s 3 forwards;
                                 }
+
                                 .bottom.blip {
                                     bottom: 0;
+                                    -webkit-animation: blip 0.8s infinite, reveal 0.5s linear 1.2s forwards, select 0.1s linear 3s forwards, loading 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) 3.6s 3 forwards;
                                     animation: blip 0.8s infinite, reveal 0.5s linear 1.2s forwards, select 0.1s linear 3s forwards, loading 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) 3.6s 3 forwards;
                                 }
                             }
+
                             //blipping animation like that of any text input
+                            @-webkit-keyframes blip {
+                                50% {
+                                    border-color: transparent;
+                                }
+                            }
+
                             @keyframes blip {
                                 50% {
                                     border-color: transparent;
                                 }
                             }
+
                             //revealing the Anh text
-                            @keyframes reveal {
+                            @-webkit-keyframes reveal {
                                 30% {
                                     transform: translateX(3rem);
                                 }
+
                                 60% {
                                     transform: translateX(3.7rem);
                                 }
+
                                 100% {
                                     transform: translateX(4.8rem);
                                 }
                             }
+
+                            @keyframes reveal {
+                                30% {
+                                    transform: translateX(3rem);
+                                }
+
+                                60% {
+                                    transform: translateX(3.7rem);
+                                }
+
+                                100% {
+                                    transform: translateX(4.8rem);
+                                }
+                            }
+
                             //covered the Anh text
+                            @-webkit-keyframes select {
+                                100% {
+                                    transform: translateX(0);
+                                    background-color: $abs-white;
+                                    border-top: $abs-white solid 2px;
+                                    border-bottom: $abs-white solid 2px;
+                                }
+                            }
+
                             @keyframes select {
                                 100% {
                                     transform: translateX(0);
-                                    background-color: $dark-blue;
+                                    background-color: $abs-white;
+                                    border-top: $abs-white solid 0.5px;
+                                    border-bottom: $abs-white solid 0.5px;
                                 }
                             }
+
                             //loading animation (wormy stuffs)
+                            @-webkit-keyframes loading {
+                                50% {
+                                    transform: scaleX(1.7);
+                                }
+                            }
+
                             @keyframes loading {
                                 50% {
                                     transform: scaleX(1.7);
                                 }
                             }
+
                             //zoom out to transist to main home page
+                            @-webkit-keyframes zoom {
+                                100% {
+                                    transform: scale(200, 200);
+                                }
+                            }
+
                             @keyframes zoom {
                                 100% {
                                     transform: scale(200, 200);
@@ -202,81 +278,90 @@
                             }
                         }
                     }
-                    
+
                     //navbar
                     .nav {
                         @include center-parents();
+                        background-color: $abs-white;
                         position: fixed;
+                        box-sizing: border-box;
+                        width: 100%;
                         z-index: 1200;
-                        left: 4.6rem;
-                        right: 5rem;
+                        padding-left: $nav-paddings;
+                        padding-right: $nav-paddings;
                         height: $top;
+                        -webkit-animation: fade 1000ms cubic-bezier(0.165, 0.84, 0.44, 1) 200ms forwards;
                         animation: fade 1000ms cubic-bezier(0.165, 0.84, 0.44, 1) 200ms forwards;
                         opacity: 0;
+
                         &:hover {
                             ~.hero-contents {
                                 opacity: 0.2;
                             }
                         }
+
                         //wrapper for header
                         .smallheader-wrapper {
                             @include center-parents();
                             justify-content: space-between;
                             height: $top;
-                            min-width: 5.5rem;
+                            min-width: 10rem;
                             position: relative;
-                            //header containing 2 brackets n maintext
+
+                            //the displaying section header on top left
                             .section-smallheader {
-                                width: 100%;
                                 @include center-parents();
                                 position: relative;
-                                height: 40px;
-                                color: $cyan-blue;
-                                font-weight: bold;
+                                color: $abs-black;
+                                width: 100%;
+                                font-family: "Suranna", serif;
+
                                 //the main section (can include text OR holo ball)
                                 .main-text {
                                     @include center-elements();
                                     @include center-parents();
                                     width: 100%;
                                     position: relative;
+
                                     //text config
                                     p {
                                         @include center-elements();
-                                        @include absolute-center();
                                         @include center-parents();
-                                        display: block;
+                                        @include absolute-center();
+                                        text-align: center;
                                         height: 1.3rem;
                                         font-size: $med-text;
                                         transition: all 200ms cubic-bezier(0.165, 0.84, 0.44, 1);
                                     }
                                 }
-                                .bracket {
-                                    transition: transform 200ms cubic-bezier(0.165, 0.84, 0.44, 1);
-                                    font-size: 1.2rem;
+
+                                //section icons
+                                i {
+                                    transform: scale(1.3, 1.3);
                                 }
+
+
+                                // .bracket {
+                                //     transition: transform 200ms cubic-bezier(0.165, 0.84, 0.44, 1);
+                                //     font-size: 1.2rem;
+                                // }
                             }
                         }
-                        //the holo dot when reaching the button on HOme
-                        .holo-dot {
-                            width: 0.8rem;
-                            height: 0.8rem;
-                            position: relative;
-                            border-radius: 100%;
-                            background-color: $orange;
-                            margin: 0 auto;
-                        }
+
                         //the functional glasses
                         .glasses {
                             @include center-parents();
                             @include absolute-center();
                             width: 6.5rem;
-                            transform: scale(0.8, 0.8);
+                            transform: scale(0.7, 0.7);
                             transition: transform 1.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+
                             //each glass
                             .glass {
                                 width: 3rem;
                                 height: 2rem;
-                                border: solid $cyan-blue 2px;
+                                border: solid $abs-black 2px;
+
                                 //each eyeball
                                 .eyeball {
                                     position: relative;
@@ -286,6 +371,7 @@
                                     border-radius: 100%;
                                     border: none;
                                     transition: transform 20ms cubic-bezier(0.165, 0.84, 0.44, 1);
+
                                     //the eye inside each eyeball
                                     .eye {
                                         @include absolute-center();
@@ -296,57 +382,83 @@
                                         height: 1rem;
                                         margin: auto;
                                         border-radius: 100%;
-                                        background: $light-grey;
+                                        border: solid 1px $abs-black;
+                                        background: $abs-black;
                                         transition: right 1s cubic-bezier(0.165, 0.84, 0.44, 1);
                                     }
                                 }
                             }
+
                             .glass-left {
-                                border-bottom-right-radius: 30px;
+                                border-bottom-right-radius: 20px;
                                 border-bottom-left-radius: 20px;
                                 border-top-right-radius: 10px;
                                 border-top-left-radius: 10px;
                             }
+
                             .glass-right {
                                 border-bottom-right-radius: 20px;
-                                border-bottom-left-radius: 30px;
+                                border-bottom-left-radius: 20px;
                                 border-top-right-radius: 10px;
                                 border-top-left-radius: 10px;
                             }
+
                             .glass-connector {
                                 width: 0.8rem;
-                                height: 0.15rem;
-                                background-color: $cyan-blue;
+                                height: 0.3rem;
+                                background-color: $abs-black;
                                 position: relative;
                                 top: -0.5rem;
                             }
+
+                            @-webkit-keyframes fade {
+                                0% {
+                                    opacity: 0;
+                                }
+
+                                100% {
+                                    opacity: 1;
+                                }
+                            }
+
                             @keyframes fade {
                                 0% {
                                     opacity: 0;
                                 }
+
                                 100% {
                                     opacity: 1;
                                 }
                             }
                         }
+
                         //nav menu on desktop
                         .nav-menu-desktop {
                             @include center-parents();
                             justify-content: space-between;
+
                             a {
-                                margin-left: 1rem;
-                                font-size: $med-text;
-                                color: $cyan-blue;
+                                margin-left: $normal-text;
+                                margin-top: 0;
+                                margin-bottom: 0;
+                                text-align: center;
+                                align-items: center;
+                                font-size: $normal-text;
+                                color: $abs-black;
                                 transition: all 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
+                                border-bottom: 3px solid $abs-white;
+
                                 &:hover {
-                                    color: $orange;
+                                    border-color: $abs-black;
                                 }
                             }
                         }
-                        //the wrapper of menubutton
+
+                        //the wrapper of nav-menu buttons vertically
                         .nav-select {
                             @include center-parents();
                             z-index: 1200;
+
                             //naving button menu
                             button {
                                 border: none;
@@ -356,6 +468,8 @@
                                 top: 0;
                             }
                         }
+
+                        //menu sticks (the menu hamburger symbol)
                         .stick-figure {
                             width: 2rem;
                             position: relative;
@@ -363,38 +477,44 @@
                             margin: auto;
                             text-align: center;
                             cursor: pointer;
+
                             .stick {
                                 @include absolute-center();
                                 width: 2rem;
                                 height: 0.15rem;
-                                background-color: $light-grey;
+                                background-color: $abs-black;
                                 transition: all 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
                             }
+
                             .top {
                                 @extend .stick;
                                 transform: translateY(0.4rem);
                             }
+
                             .bottom {
                                 @extend .stick;
                                 transform: translateY(-0.4rem);
                             }
+
                             .open.top {
                                 transform: rotate(45deg);
                             }
+
                             .open.bottom {
                                 transform: rotate(-45deg);
                             }
+
                             .open.mid {
                                 transform: translateX(-2rem) scale(0, 0);
                             }
                         }
                     }
-                    
+
                     //all the contents
                     .hero-contents {
                         transition: all 800ms cubic-bezier(0.165, 0.84, 0.44, 1);
                     }
-                    
+
                     //right-side-menu
                     .slide-menu {
                         @include center-parents();
@@ -406,286 +526,313 @@
                         min-height: 100vh;
                         background-size: 300%;
                         background-position: left;
-                        background-image: linear-gradient(to right, $orange 60%, $cyan-blue 61%, $cyan-blue 100%);
-                        color: $dark-blue;
+                        background-image: linear-gradient(to right, $dark-grey 60%, $abs-black 61%, $abs-black 100%);
+                        color: $abs-white;
                         transition: all 800ms cubic-bezier(0.165, 0.84, 0.44, 1) 50ms;
+
                         //the menu inside
                         .menu-list-wrapper {
                             @include center-elements();
                             width: 100%;
+
                             ul {
                                 list-style-type: none;
                                 padding-left: 30%;
                                 text-align: left;
+
                                 //each element
                                 li {
                                     margin: 1rem 0;
                                     transition: all 700ms cubic-bezier(0.165, 0.84, 0.44, 1);
                                 }
+
                                 .slideleft {
                                     transform: translateX(0);
                                 }
+
                                 .slideright {
                                     transform: translateX(10rem);
                                 }
+
                                 a {
-                                    color: $dark-blue;
+                                    color: $abs-white;
                                     font-weight: bold;
                                     text-decoration: none;
-                                    font-size: 1.8rem;
-                                    transition: all 0.5s ease;
+                                    font-size: $med-text;
+                                    transition: all 0.1s ease;
+
+
                                     &:hover {
-                                        color: $orange;
+                                        border-bottom: 2px solid $abs-white;
                                     }
                                 }
                             }
                         }
                     }
-                    
+
                     //when menu is opened, show colorfill animation
                     .openmenu.slide-menu {
                         background-position: right;
                     }
-                    
+
                     //when closed, hide menu to 0 opacity and revert colorfill
                     .collapse.slide-menu {
                         width: 0;
                         opacity: 0;
                         background-position: left;
                     }
-                    
+
                     //Home section
                     .home {
                         @include section-config();
                         @include center-parents();
+                        overflow: hidden;
+
                         .heading-wrapper {
-                            margin: auto 5rem;
                             position: relative;
                             text-align: left;
+                            left: $nav-paddings;
                             bottom: -5rem;
+
+                            //main headings
                             h1 {
                                 margin: 0;
-                                transform: translateY(8rem);
-                                font-size: 6rem;
-                                font-weight: normal;
+                                transform: translateY(15rem); //initial transform; 
+                                font-size: $heading;
+                                font-weight: lighter;
+                                font-family: "Suranna", serif;
+                                -webkit-animation: floatup 800ms cubic-bezier(0.165, 0.84, 0.44, 1) 1000ms forwards;
                                 animation: floatup 800ms cubic-bezier(0.165, 0.84, 0.44, 1) 1000ms forwards;
                             }
-                            h5 {
-                                position: relative;
-                                top: -1rem;
-                                transform: translateY(8rem);
-                                font-size: 1.5rem;
-                                font-weight: lighter;
-                                animation: floatup 800ms cubic-bezier(0.165, 0.84, 0.44, 1) 1200ms forwards;
-                            }
+
+                            // h5 {
+                            //     margin: 0;
+                            //     position: relative;
+                            //     transform: translateY(8rem); //initial transform
+                            //     font-size: 1.5rem;
+                            //     font-weight: lighter;
+                            //     animation: floatup 800ms cubic-bezier(0.165, 0.84, 0.44, 1) 1200ms forwards;
+                            // }
+
                             .hider {
-                                height: 8rem;
+                                height: 50vh;
                                 width: 100%;
                                 margin: 0 auto;
-                                background: $dark-blue;
+                                background: $abs-white;
                                 position: absolute;
-                                transform: translateY(2rem);
+
                             }
                         }
+
+                        @-webkit-keyframes floatup {
+                            0% {
+                                transform: translateY(10rem)
+                            }
+
+                            100% {
+                                transform: translateY(0)
+                            }
+                        }
+
                         @keyframes floatup {
                             0% {
-                                transform: translateY(8rem)
+                                transform: translateY(10rem)
                             }
+
                             100% {
                                 transform: translateY(0)
                             }
                         }
                     }
-                    
-                    //the ball with many rings
+
+                    //the ball with many rings(OLD) now just a button 
                     .discover-ball {
                         @include center-parents();
-                        width: 4.2rem;
                         height: 4.2rem;
-                        position: relative;
-                        background: transparent;
-                        border-radius: 50%;
                         opacity: 0;
+                        -webkit-animation: fade 1200ms cubic-bezier(0.165, 0.84, 0.44, 1) 2000ms forwards;
                         animation: fade 1200ms cubic-bezier(0.165, 0.84, 0.44, 1) 2000ms forwards;
+                        transform: translateY(-5vh);
+
+                        //actually there is a link wrapper
+                        a {
+                            margin-left: 0;
+                        }
+
+                        //styling for the text inside
+                        p {
+
+                            font-weight: lighter;
+                            font-size: $med-text;
+                            color: $abs-black  !important;
+                            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+                            border-bottom: solid 3px $abs-white;
+                        }
+
+
                         &:hover {
+                            p {
+                                border-color: $abs-black;
+                            }
+
                             i {
-                                @include med-icon();
                                 color: $orange;
                             }
-                            div {
-                                border: none;
-                            }
                         }
-                        div {
-                            @include absolute-center();
-                            width: 0.1rem;
-                            height: 0.1rem;
-                            opacity: 1;
-                            border-radius: 50%;
-                            border: $cyan-blue 2px solid;
-                            animation: holo-ring 1.5s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
-                            transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
-                            &:nth-child(1) {
-                                animation-delay: 0.15s;
-                            }
-                            &:nth-child(2) {
-                                animation-delay: 0.3s;
-                            }
-                            &:nth-child(3) {
-                                animation-delay: 0.45s;
-                            }
-                        }
-                        //the play button
-                        a {
-                            @include center-parents();
-                            @include absolute-center();
-                            right: 0;
-                            left: 0;
-                            height: 1rem;
-                            width: 80%;
-                            text-decoration: none;
-                            color: $cyan-blue;
-                            i {
-                                @include center-elements();
-                                transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
-                            }
-                        }
-                        @keyframes holo-ring {
-                            100% {
-                                width: 4rem;
-                                height: 4rem;
-                                opacity: 0;
-                            }
-                        }
-                        @keyframes zoom-fade {
-                            0% {
-                                opacity: 0;
-                                transform: scale(0, 0);
-                            }
-                            100% {
-                                opacity: 1;
-                                transform: scale(1, 1);
-                            }
-                        }
+
                     }
-                    
-                    //the trail appeared when clicking the play button / get to the ABout section
-                    .trail-wrapper {
-                        position: absolute;
-                        width: 4.2rem;
-                        left: 5rem;
-                        top: 0;
-                        z-index: 1000;
-                        display: flex;
-                        flex-direction: column;
-                        #trail {
-                            margin: 0 auto;
-                            width: 0.1rem;
-                            height: 0;
-                            background: $cyan-blue;
-                            transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-                        }
-                        //the about text before merging
-                        p {
-                            margin: auto;
-                            opacity: 1;
-                            transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-                        }
-                    }
-                    
+
                     //about section
                     .about {
                         @include section-config();
                         @include center-parents();
                         overflow: hidden;
+
                         .picture-wrapper {
+                            width: 45vw;
+
                             button {
+                                -webkit-animation: fade 2s cubic-bezier(0.165, 0.84, 0.44, 1) 2s forwards;
                                 animation: fade 2s cubic-bezier(0.165, 0.84, 0.44, 1) 2s forwards;
                             }
                         }
+
                         .profile-picture {
+                            -o-object-fit: cover;
                             object-fit: cover;
                             position: relative;
-                            height: 100vh;
-                            width: 45vw;
-                            background-image: url("./profile.JPG");
+                            height: 28vw;
+                            width: 28vw;
+                            margin: 0 auto;
+                            background-image: url("./newava.jpg");
                             background-size: 100%;
                             background-repeat: no-repeat;
                             background-position: center center;
-                            box-shadow: 50px 50px 30px 0 $dark-blue inset, -60px -60px 20px 0 $dark-blue inset;
-                            opacity: 0.6 !important;
+                            opacity: 1;
+
+                            div {
+                                @include absolute-center();
+                                box-sizing: border-box;
+                                width: 100%;
+                                height: 100%;
+                                border: $abs-black 2px solid;
+                                z-index: -1;
+
+                                &:nth-child(1) {
+                                    transform: translateX(1rem) translateY(1rem);
+                                }
+
+                                &:nth-child(2) {
+                                    transform: translateX(2rem) translateY(2rem);
+                                }
+
+
+                            }
+
                         }
+
+
+
                         .profile-description-wrapper {
                             @include center-parents();
                             height: 100vh;
                             width: 55vw;
+
                             .profile-description {
                                 @include center-elements();
                                 text-align: left;
                                 width: 70%;
+
                                 p {
-                                    font-size: $med-text;
+                                    font-size: calc(1.1*#{$normal-text});
                                 }
+
                                 .main-description {
-                                    color: $cyan-blue;
+                                    color: $abs-black;
+                                    font-weight: bold;
                                 }
+
                                 .comment-description {
-                                    color: $light-navy;
+                                    color: $dark-grey;
                                 }
+
                                 //a row full of icons 
                                 .stack-icon {
                                     @include center-parents();
                                     @include center-elements();
                                     width: 80%;
                                     margin-top: 1rem;
-                                    color: $light-navy;
+                                    color: $dark-grey;
+
                                     i {
                                         @include med-icon();
                                         transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
                                     }
+
                                     p {
                                         font-size: $normal-text;
                                         font-weight: bold;
                                         transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
                                     }
+
                                     //config for each icon
                                     .fa-react:hover {
                                         color: $cyan-blue;
+
                                         ~p {
                                             color: $cyan-blue;
                                         }
                                     }
+
                                     .fa-html5:hover {
                                         color: $orange;
+
                                         ~p {
                                             color: $orange;
                                         }
                                     }
+
                                     .fa-js-square:hover {
                                         color: $yellow;
+
                                         ~p {
                                             color: $yellow;
                                         }
                                     }
+
                                     .fa-python:hover {
                                         color: $green;
+
                                         ~p {
                                             color: $green;
                                         }
                                     }
+
                                     .fa-css3-alt:hover {
                                         color: $blue;
+
                                         ~p {
                                             color: $blue;
                                         }
                                     }
+
                                     .fa-camera-retro:hover {
                                         color: $light-grey;
+
                                         ~p {
                                             color: $light-grey;
                                         }
                                     }
+
+                                    .fa-java:hover {
+                                        color: $orange;
+
+                                        ~p {
+                                            color: $orange;
+                                        }
+                                    }
                                 }
+
                                 //the camera one
                                 .single-stack {
                                     justify-content: center;
@@ -693,524 +840,456 @@
                             }
                         }
                     }
-                    
+
                     //projects section
                     .projects {
                         @include section-config();
-                        @include center-parents();
-                        flex-direction: column;
-                        justify-content: space-evenly;
-                        padding-top: $top;
-                        //wrapper for the project (frame), accounts for distance btw projects too
-                        .project-wrapper {
-                            @include center-elements();
-                            @include center-parents();
-                            width: 50vw;
-                            height: 60vh;
-                            //each project is about 90% width of the frame
-                            .project {
-                                @include center-elements();
-                                width: 90%;
-                                height: 75%;
-                                position: relative;
-                                //frame for picture displayed (hide overflow stuff)
-                                .picture-wrapper {
+                        align-items: center;
+                        justify-content: center;
+                        position: relative;
+                        transition: all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+
+                        //wrapping all the projects, a GRID
+                        .projects-frame {
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translateY(-50%) translateX(-50%);
+                            display: grid;
+                            grid-template-columns: $grid-side $grid-side $grid-side $grid-side;
+                            grid-template-rows: $grid-side $grid-side;
+                            column-gap: $column-gap;
+                            row-gap: calc(6*#{$column-gap});
+                            justify-content: center;
+                            align-items: center;
+
+                            //wrapper for each of the project
+                            .project-wrapper {
+                                height: 100%;
+                                width: 100%;
+
+                                //config for each project
+                                .project {
                                     @include center-elements();
-                                    @include full-child();
-                                    position: relative;
-                                    overflow: hidden;
-                                    //the project picture, width large dimensions to account for skewing
-                                    .project-picture {
-                                        position: absolute;
-                                        z-index: -1;
-                                        width: 1300px;
-                                        height: 1000px;
-                                        object-fit: cover;
-                                        opacity: 0.6;
-                                    }
-                                    //for each project
-                                    #hcmusrobotics {
-                                        background-image: url("./robotics.JPG");
-                                        background-size: 100%;
-                                        transform: rotate(15deg) skew(-20deg) translateX(-50%) translateY(-5%);
-                                    }
-                                    #issuetracker {
-                                        background-image: url("./signin.JPG");
-                                        background-repeat: repeat;
-                                        transform: rotate(15deg) skew(-20deg) translateX(-30%) translateY(-20%);
-                                    }
-                                    #lawsofmotion {
-                                        background-image: url("./lawsofmotion.JPG");
-                                        transform: rotate(15deg) skew(-20deg) translateX(-30%) translateY(-20%);
-                                    }
-                                    #covidtracker {
-                                        background-image: url("./covidtracker.JPG");
-                                        transform: rotate(15deg) skew(-20deg) translateX(-30%) translateY(-8%);
-                                    }
-                                }
-                                //descriptions
-                                .project-des {
-                                    @include center-elements();
-                                    @include absolute-center();
-                                    @include full-child();
-                                    background: linear-gradient(to bottom, transparent 40%, $orange 41%, $orange 60%, $light-navy 61%, $light-navy 100%);
-                                    background-size: 100% 300%;
-                                    background-position: top;
-                                    border-bottom: 1px $cyan-blue solid;
-                                    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-                                    //project heading
-                                    h1 {
-                                        margin: 0;
-                                        font-size: 4rem;
-                                        color: transparent;
-                                        background: linear-gradient(to top, $light-grey 49%, $cyan-blue 50%, $cyan-blue 100%);
-                                        background-clip: text;
-                                        background-size: 100% 200%;
-                                        background-position: bottom;
+                                    height: 100%;
+
+
+                                    //frame for picture displayed (hide overflow stuff)
+                                    .picture-wrapper {
+                                        height: 100%;
+                                        width: 100%;
+                                        position: relative;
+                                        -webkit-filter: grayscale(100%);
+                                        filter: grayscale(100%);
                                         transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-                                        position: absolute;
-                                        top: -2.8rem;
-                                        left: -2rem;
-                                    }
-                                    //display bar consists of  icons
-                                    .icon-wrapper {
-                                        @include center-parents();
-                                        position: absolute;
-                                        top: -0.5rem;
-                                        right: -0.5rem;
-                                        margin: auto;
-                                        transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-                                        width: 4.5rem;
-                                        a {
-                                            @include big-icon();
-                                            i {
-                                                opacity: 0;
-                                                color: $orange;
+
+                                        //descriptions
+                                        .project-des {
+                                            @include absolute-center();
+                                            height: 100%;
+                                            width: 100%;
+                                            transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+
+
+                                            //display bar consists of github link
+                                            .icon-wrapper {
+                                                position: absolute;
+                                                bottom: 0;
                                                 transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-                                            }
-                                        }
-                                    }
-                                    //description text abt the project
-                                    .text-des {
-                                        color: $dark-blue;
-                                        text-align: left;
-                                        margin: 3rem 1rem 0 1rem;
-                                        transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-                                        color: $light-grey;
-                                    }
-                                    //when hover the description
-                                    &:hover {
-                                        opacity: 0.9;
-                                        background-position: bottom;
-                                        border-color: $light-navy;
-                                        h1 {
-                                            background-position: top;
-                                        }
-                                        .icon-wrapper {
-                                            i {
-                                                color: $cyan-blue;
-                                                opacity: 1;
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    
-                    //gallery section
-                    .gallery {
-                        @include section-config();
-                        @include center-parents();
-                        overflow: hidden;
-                        transition: opacity 1.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-                        .video-wrapper {
-                            @include center-parents();
-                            width: 50vw;
-                            height: 100vh;
-                            .video-frame {
-                                @include center-elements();
-                                @include center-parents();
-                                position: relative;
-                                width: 90%;
-                                height: 50%;
-                                iframe {
-                                    @include full-child();
-                                    border: none;
-                                    opacity: 0.8;
-                                    transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
-                                    &:hover {
-                                        &~.animation-wrapper {
-                                            .text-holder {
+
                                                 h1 {
-                                                    background-position: top;
+                                                    //github text
+                                                    border: none;
+                                                    color: $abs-white;
+                                                    background: linear-gradient(to left, transparent 49%, $abs-black 50%, $abs-black 100%);
+                                                    background-size: 205% 100%;
+                                                    background-position: right;
+                                                    padding: 0.1rem 0.5rem;
+                                                    font-size: 1.5vw;
+                                                    opacity: 0;
+                                                    margin: 0;
+
                                                 }
                                             }
+
+
+                                            //when hover the description
+                                            &:hover {
+                                                opacity: 0.9;
+
+                                                .icon-wrapper {
+                                                    h1 {
+                                                        background-position: left;
+                                                        opacity: 1;
+
+                                                        &:hover {
+                                                            i {
+                                                                color: $orange;
+                                                            }
+                                                        }
+                                                    }
+
+                                                }
+
+                                            }
                                         }
                                     }
-                                }
-                                .animation-wrapper {
-                                    @include full-child();
-                                    @include center-parents();
-                                    position: absolute;
-                                    background: linear-gradient(to top, transparent 34%, $orange 35%, $orange 45%, $cyan-blue 46%, $cyan-blue 64%, $dark-blue 65%, $dark-blue 100%);
-                                    background-size: 100% 300%;
-                                    background-position: bottom;
-                                    transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
-                                    pointer-events: none;
-                                    .text-holder {
-                                        @include center-parents();
-                                        @include full-child();
+
+                                    //project heading
+                                    h1 {
                                         position: relative;
-                                        h1 {
-                                            position: absolute;
-                                            margin: 0;
-                                            top: -2.7rem;
-                                            left: -1.3rem;
-                                            color: $light-grey;
-                                            font-size: $heading;
-                                            color: transparent;
-                                            background: linear-gradient(to top, $light-grey 49%, $cyan-blue 50%, $cyan-blue 100%);
-                                            background-clip: text;
-                                            background-size: 100% 200%;
-                                            background-position: bottom;
-                                            transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+                                        width: fit-content;
+                                        margin: 0;
+                                        font-family: "Manrope", sans-serif;
+                                        font-weight: lighter;
+                                        font-size: 1.9vw;
+                                        letter-spacing: -1px;
+                                        align-items: center;
+                                        border-bottom: solid 3px white;
+                                        transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+                                        cursor: pointer;
+
+                                        &:hover {
+                                            border-color: $abs-black;
+
+                                            i {
+                                                color: $orange;
+                                            }
                                         }
                                     }
+
+                                }
+
+                            }
+
+                            //each project customization
+                            #wannaType {
+
+                                grid-column: 1 / span 2;
+                                grid-row: 1 / span 2;
+
+                                .picture-wrapper {
+                                    background-image: url("./wannatype.png");
+                                    background-position: center;
+                                    background-size: cover;
+                                }
+
+                            }
+
+                            #hcmusrobotics {
+
+                                grid-column: 3 / span 2;
+                                grid-row: 1 / 2;
+
+                                .picture-wrapper {
+                                    background-image: url("./hcmus.png");
+                                    background-position: 70% 10%;
+                                    background-size: 140%;
                                 }
                             }
+
+                            #issuetracker {
+                                .picture-wrapper {
+                                    box-sizing: border-box;
+                                    background-image: url("./issue.png");
+                                    background-position: center;
+                                    background-size: 120%;
+                                }
+                            }
+
+                            #lawsofmotion {
+                                .picture-wrapper {
+                                    background-image: url("./laws.png");
+                                    background-position: center;
+                                    background-size: cover;
+                                }
+                            }
+
+                            // #covidtracker {
+                            //     background-image: url("./covidtracker.JPG");
+                            //     // transform: rotate(15deg) skew(-20deg) translateX(-30%) translateY(-8%);
+                            // }
+
                         }
+
+
+
                     }
-                    
+
                     //contact section
                     .contacts {
                         @include section-config();
                         @include center-parents();
                         min-height: 50vh;
                         background: transparent;
+
                         //main frame of the contents
                         .contact-wrapper {
                             margin: auto;
-                            width: 80%;
-                            color: $cyan-blue;
+                            width: calc(4*#{$grid-side} + 4*#{$column-gap}); //to align with the project;
+                            color: $abs-black;
                             position: relative;
+                            text-align: left;
+
+                            //let's work together
                             h1 {
-                                font-weight: 200;
-                                font-size: 3rem;
-                                margin: 3rem auto;
+                                font-weight: lighter;
+                                font-size: calc(0.6*#{$heading});
+                                font-family: "Suranna", serif;
+                                margin: 0;
+
                                 span {
                                     color: $orange;
                                 }
                             }
+
+                            //link to the contact buttons
                             .link-wrapper {
-                                @include center-elements();
-                                @include center-parents();
-                                justify-content: space-evenly;
-                                width: 30%;
-                                height: auto;
-                                i {
-                                    @include center-elements();
-                                    @include big-icon();
-                                    color: transparent;
-                                    background: linear-gradient(to top, $light-navy 50%, $cyan-blue 51%, $cyan-blue 100%);
-                                    background-size: 100% 200%;
-                                    background-position: bottom;
-                                    background-clip: text;
-                                    transition: all 500ms cubic-bezier(0.165, 0.84, 0.44, 1);
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: start;
+
+                                a {
+                                    text-decoration: none;
+                                    color: $abs-black;
+                                    font-size: $med-text;
+                                    margin-right: $normal-text;
+                                    border-bottom: 3px solid $abs-white;
+                                    width: -webkit-fit-content;
+                                    width: -moz-fit-content;
+                                    width: fit-content;
+                                    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+
                                     &:hover {
-                                        background-position: top;
-                                        transform: scale(3.2, 3.2);
+                                        border-color: $abs-black;
+
+                                        i {
+                                            color: $orange;
+                                        }
                                     }
                                 }
                             }
+
+                            //copyright
                             p {
-                                color: $light-navy;
+                                color: $dark-grey;
                                 margin: 2rem auto;
                             }
                         }
                     }
-                    
+
                     //animations for Transition Group
                     .merge-enter {
                         opacity: 0;
+                        transform: translateX(-2rem);
                         @include absolute-center();
-                        color: $orange !important;
+                        color: $orange  !important;
                     }
-                    
+
                     .merge-enter.merge-enter-active {
                         opacity: 1;
-                        color: $cyan-blue;
                         transform: scale(1, 1);
                         transition: all 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
                     }
-                    
+
                     .merge-exit {
                         opacity: 1;
                         transform: scale(1, 1);
                         @include absolute-center();
                     }
-                    
+
                     .merge-exit.merge-exit-active {
                         opacity: 0;
                         transform: scale(0, 0);
                         transition: all 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
                     }
-                    
+
                     //aos custom animations
                     [data-aos="pop-up"] {
                         opacity: 0;
                         transform: translateY(0);
                         transition-property: all;
+
                         &.aos-animate {
-                            transform: translateY(-22vh);
+                            transform: translateY(-30%);
                             opacity: 1;
                         }
                     }
-                    
+
                     [data-aos="color-reveal"] {
                         transition-property: all;
                         background-position: top !important;
+
                         &.aos-animate {
                             background-position: bottom !important;
                         }
                     }
-                    
-                    @media (max-width:1050px) {
-                        .home {
-                            h1 {
-                                font-size: 5rem;
-                                transform: translateY(0rem);
-                            }
-                            h5 {
-                                font-size: 1.2rem;
-                            }
-                        }
+
+                    //////// MEDIA QUERIES ///////////////
+                    @media (max-width: 970px) {
                         .slide-menu {
-                            width: 40vw;
-                            ul {
-                                padding-left: 2rem;
-                            }
-                        }
-                    }
-                    
-                    @media (max-width:970px) {
-                        .slide-menu {
+                            //make burger menu full size
                             width: 100vw;
                         }
+
                         .home {
                             .heading-wrapper {
                                 h1 {
-                                    font-size: 4rem;
+                                    font-size: calc(0.5*#{$heading});
                                 }
                             }
                         }
+
                         .about {
                             flex-direction: column;
-                            .profile-picture {
+                            padding-top: $top;
+
+                            .picture-wrapper {
                                 width: 100vw;
                                 height: 40vh;
                                 background-position: center center;
+                                align-items: center;
+                                justify-content: end;
+
+                                .profile-picture {
+                                    position: relative;
+                                    top: 50%;
+                                    transform: translateY(-50%);
+                                    width: $section-size-mobile; //match with description;
+                                    height: 90%;
+
+                                    //hide the frames behind profile pic
+                                    div {
+                                        display: none;
+                                    }
+                                }
                             }
+
                             .profile-description-wrapper {
                                 @include small-frame();
+
                                 .profile-description {
-                                    width: 85%;
+                                    width: $section-size-mobile;
+                                    margin-top: 0;
+
                                     p {
-                                        font-size: 1rem;
+                                        font-size: calc(1.2*#{$normal_text});
                                     }
+
                                     .stack-icon {
+                                        width: 100%;
+
+                                        //the icon wrappers should have some spacings now
                                         p {
-                                            margin: 0.4rem 0;
+                                            font-size: $normal-text;
                                         }
                                     }
                                 }
                             }
                         }
+
                         .projects {
-                            .project-wrapper {
-                                @include medium-frame();
-                                .project {
-                                    @include medium-frame-child();
-                                    .picture-wrapper {
-                                        .project-picture {
-                                            background-size: 130%;
-                                        }
-                                        #hcmusrobotics {
-                                            transform: rotate(15deg) skew(-20deg) translateX(-45%) translateY(-5%);
-                                        }
-                                        #issuetracker {
-                                            transform: rotate(15deg) skew(-20deg) translateX(-30%) translateY(-10%);
-                                        }
-                                        #lawsofmotion {
-                                            transform: rotate(15deg) skew(-20deg) translateX(-25%) translateY(-8%);
-                                        }
-                                        #covidtracker {
-                                            transform: rotate(15deg) skew(-20deg) translateX(-30%) translateY(-5%);
-                                        }
-                                    }
-                                    .project-des {
-                                        h1 {
-                                            font-size: 3rem;
-                                            top: -2.1rem;
-                                            left: -1.5rem;
-                                        }
-                                        .icon-wrapper {
-                                            @include center-parents();
-                                            width: 3.8rem;
-                                            a {
-                                                transform: scale(2.5, 2.5);
+                            .projects-frame {
+                                width: $section-size-mobile;
+                                grid-template-columns: $section-size-mobile;
+                                grid-template-rows: 18vh 18vh 18vh 18vh;
+                                row-gap: 5vh;
+
+                                .project-wrapper {
+                                    .project {
+                                        .picture-wrapper {
+                                            .project-des {
+                                                .icon-wrapper {
+                                                    h1 {
+                                                        font-size: calc(1.8*#{$normal-text});
+                                                    }
+                                                }
                                             }
                                         }
+
                                     }
                                 }
                             }
-                        }
-                        .gallery {
-                            flex-direction: column;
-                            padding-top: $top;
-                            .video-wrapper {
+
+                            .project-wrapper {
                                 @include medium-frame();
-                                .video-frame {
-                                    @include medium-frame-child();
+                                grid-column: auto !important;
+                                grid-row: auto !important;
+
+                                .project {
+                                    h1.project-title {
+                                        font-size: calc(1.8*#{$normal-text});
+                                    }
                                 }
+
                             }
+
                         }
+
                         .contacts {
                             .contact-wrapper {
-                                .link-wrapper {
-                                    width: 50%;
-                                }
+                                width: $section-size-mobile  !important;
                             }
                         }
                     }
-                    
-                    @media (max-width:586px) {
+
+                    //mobile users
+                    @media screen and (max-width: 586px) {
                         .nav {
-                            left: 1.6rem;
-                            right: 2rem;
                             .glasses {
                                 transform: scale(0.6, 0.6);
                             }
                         }
+
                         .home {
                             .heading-wrapper {
-                                margin: auto 2rem;
                                 h1 {
-                                    font-size: 2.6rem;
-                                }
-                                h5 {
-                                    font-size: 1.1rem;
+                                    font-size: calc(0.4*#{$heading});
                                 }
                             }
                         }
-                        .trail-wrapper {
-                            left: 2rem;
-                        }
+
                         .about {
+                            .picture-wrapper {
+                                height: 35vh;
+                            }
+
                             .profile-description-wrapper {
-                                height: 62vh;
-                                .profile-description {
-                                    margin: 0 auto;
-                                    width: 90%;
-                                    height: 100%;
-                                    p {
-                                        font-size: $normal-text-mobile;
-                                    }
-                                    .stack-icon {
-                                        width: 95%;
-                                        i {
-                                            transform: scale(1.6, 1.6);
-                                        }
-                                        p {
-                                            font-size: $normal-text-mobile;
-                                        }
-                                    }
-                                    .button-stack {
-                                        transform: translateY(-10rem);
-                                    }
-                                }
+                                height: 65vh;
+
                             }
+
+                            p {
+                                font-size: calc(1.1*#{$small-text}) !important;
+                            }
+
                         }
+
                         .projects {
-                            .project-wrapper {
-                                @include small-frame();
-                                .project {
-                                    @include small-frame-child();
-                                    .picture-wrapper {
-                                        .project-picture {
-                                            background-size: 120%;
-                                        }
-                                        #hcmusrobotics {
-                                            transform: rotate(15deg) skew(-20deg) translateX(-60%) translateY(-5%);
-                                        }
-                                        #issuetracker {
-                                            transform: rotate(15deg) skew(-20deg) translateX(-40%) translateY(-1%);
-                                        }
-                                        #lawsofmotion {
-                                            transform: rotate(15deg) skew(-20deg) translateX(-35%) translateY(-20%);
-                                        }
-                                        #covidtracker {
-                                            transform: rotate(15deg) skew(-20deg) translateX(-46%) translateY(-5%);
-                                        }
-                                    }
-                                    .project-des {
-                                        h1 {
-                                            font-size: $mobile-heading;
-                                            top: -1.4rem;
-                                            left: -0.5rem;
-                                        }
-                                        .icon-wrapper {
-                                            @include center-parents();
-                                            width: 3.2rem;
-                                            right: 0.2rem;
-                                            a {
-                                                transform: scale(1.8, 1.8);
-                                            }
-                                        }
-                                        .text-des {
-                                            margin-top: 1.5rem;
-                                            p {
-                                                font-size: $normal-text-mobile;
-                                            }
-                                        }
-                                    }
-                                }
+                            h1 {
+                                font-size: calc(1.5*#{$normal-text}) !important;
+
                             }
+
                         }
-                        .gallery {
-                            justify-content: space-evenly;
-                            .video-wrapper {
-                                @include small-frame();
-                                .video-frame {
-                                    @include small-frame-child();
-                                    .animation-wrapper {
-                                        .text-holder {
-                                            h1 {
-                                                font-size: $mobile-heading;
-                                                top: -1.4rem;
-                                                left: -0.6rem;
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
+
                         .contacts {
                             .contact-wrapper {
                                 h1 {
-                                    margin-bottom: 2.8rem;
-                                    margin-top: 6rem;
-                                    line-height: 2.8rem;
+                                    font-size: calc(0.9*#{$big-text});
                                 }
-                                .link-wrapper {
-                                    width: 70%;
-                                    i {
-                                        transform: scale(2.5, 2.5);
-                                    }
-                                }
-                                p {
-                                    font-size: $normal-text-mobile;
-                                }
+                            }
+                        }
+
+                        //aos custom animations
+                        [data-aos="pop-up"] {
+                            opacity: 0;
+                            transform: translateY(0);
+                            transition-property: all;
+
+                            &.aos-animate {
+                                transform: translateY(-10%);
+                                opacity: 1;
                             }
                         }
                     }
