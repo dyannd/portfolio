@@ -32,7 +32,7 @@ function About({ width }) {
                     </p>
                     <p className="comment-description" data-aos="fade-up" data-aos-duration="1200">
                         //  I like to make things that are visually pleasing in general.
-                        When not doing school stuff, I study programming, and take photo/video gigs.
+                        When not doing school stuff, I study programming, and take photo/video gigs. Also, I love keyboards!
                     </p>
 
                     <p className="comment-description" data-aos="fade-up" data-aos-duration="1600">
