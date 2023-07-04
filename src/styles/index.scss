@@ -1,1295 +1,453 @@
-                    @import "./font/fontTTHoves.css";
-                    //some default stuffs
-                    $light-grey: #B1BAC7;
-                    $dark-blue: #12111a;
-                    $abs-white: #FFFFFF;
-                    $abs-black: #000000;
-                    $cyan-blue: #91DEFB;
-                    $light-navy: #474559;
-                    $dark-grey: #858585;
-                    $orange: #b35e46;
-                    $yellow: #b3844f;
-                    $green: #77a186;
-                    $blue: #2c3cb0;
-                    $top: 80px;
-                    $heading: 8em;
-                    $small-text: 0.9em;
-                    $normal-text: 1em;
-                    $med-text: 1.5em;
-                    $big-text: 3em;
-                    $grid-side: 16vw;
-                    $column-gap: 0.5vw;
-                    $row-gap: 3vw;
-                    $nav-paddings: 5vw;
-                    $section-size-mobile: calc(100vw - 2*#{$nav-paddings});
+@import './scss/config.scss';
+@import './scss/loading.scss';
+@import './scss/nav.scss';
+@import './scss/about.scss';
+@import './scss/home.scss';
 
-                    //config for every page (big section)
-                    @mixin section-config {
-                        min-height: 100vh;
-                        min-width: 100vw;
-                        max-width: 100vw;
-                        margin: 0;
-                        padding: 0;
-                        font-family: "Manrope", sans-serif;
-                        background-color: $abs-white;
-                        color: $abs-black;
-                        overflow-x: hidden;
-                    }
+//all the contents
+.hero-contents {
+    transition: all 800ms cubic-bezier(0.165, 0.84, 0.44, 1);
+}
 
-                    //for centered absolute div
-                    @mixin absolute-center {
-                        position: absolute;
-                        top: 0;
-                        bottom: 0;
-                        left: 0;
-                        right: 0;
-                        margin: auto;
-                    }
+//projects section
+.projects {
+    @include section-config();
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
 
-                    //center any div inside it
-                    @mixin center-parents {
-                        display: flex;
-                        align-items: center;
-                        text-align: center;
-                        justify-content: space-between;
-                    }
+    //wrapping all the projects, a GRID
+    .projects-frame {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateY(-50%) translateX(-50%);
+        display: grid;
+        grid-template-columns: $grid-side $grid-side $grid-side $grid-side;
+        grid-template-rows: $grid-side $grid-side;
+        column-gap: $column-gap;
+        row-gap: calc(6*#{$column-gap});
+        justify-content: center;
+        align-items: center;
 
-                    //center on parents
-                    @mixin center-elements {
-                        margin: auto;
-                    }
+        //wrapper for each of the project
+        .project-wrapper {
+            height: 100%;
+            width: 100%;
 
-                    @mixin medium-frame {
-                        width: 100vw;
-                        height: 70vh;
-                    }
-
-                    @mixin small-frame {
-                        width: 100vw;
-                        height: 55vh;
-                    }
+            //config for each project
+            .project {
+                @include center-elements();
+                height: 100%;
 
 
+                //frame for picture displayed (hide overflow stuff)
+                .picture-wrapper {
+                    height: 100%;
+                    width: 100%;
+                    position: relative;
+                    -webkit-filter: grayscale(100%);
+                    filter: grayscale(100%);
+                    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
 
-                    @mixin med-icon {
-                        transform: scale(2, 2);
-                    }
-
-                    @mixin big-icon {
-                        transform: scale(3, 3);
-                    }
-
-                    //config for big section
-                    html,
-                    body,
-                    .App {
-                        @include section-config();
-                    }
-
-                    //Scrollbar settings
-                    html {
-
-                        /* width */
-                        ::-webkit-scrollbar {
-                            width: 10px;
-                        }
-
-                        /* Handle */
-                        ::-webkit-scrollbar-thumb {
-                            background: $abs-black;
-                        }
-
-                    }
-
-                    //make then links free from underline.
-                    a {
-                        cursor: pointer;
-                        text-decoration: none;
-
-                        &:visited {
-                            color: inherit;
-                        }
-                    }
-
-                    //icons transition 
-                    i {
-                        transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
-                    }
-
-                    //custom colorfill button
-                    .button-colorfill {
-                        margin: auto;
-                        background-image: linear-gradient(to bottom, $abs-white 40%, $dark-grey 41%, $dark-grey 59%, $abs-black 60%, $abs-black 100%);
-                        background-size: 102% 300%;
-                        background-position: top;
-                        font-weight: lighter;
-                        font-family: "Manrope", sans-serif;
-                        font-size: $normal-text;
-                        border: none;
-                        border-bottom: solid $abs-white 3px;
-                        border-radius: 0;
-                        padding: 0.5rem 1.5rem;
-                        transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
-                        color: $abs-black;
-                        cursor: pointer;
-
-                        &:hover {
-                            background-position: bottom;
-                            color: $abs-white;
-                        }
-                    }
-
-                    //loading stuffs (first page when refresh)
-                    .loader {
-                        @include section-config();
-                        @include center-parents();
-                        background: $abs-black;
-
-                        //the centered section of the page
-                        .compile-text-wrapper {
-                            margin: auto;
-                            width: 15rem;
-                            height: 5rem;
-                            transition: all 0.5s;
-                            position: relative;
-
-                            //My name
-                            p {
-                                @include absolute-center();
-                                font-size: $med-text;
-                                color: $abs-white;
-                                height: 1.5rem;
-                                cursor: pointer;
-                            }
-
-                            //the big blip is splitted into 3 smaller ones, each height of 0.6rem, for a total of 1.8rem
-                            div {
-                                @include absolute-center();
-                                width: 5rem;
-                                height: 1.8rem;
-
-                                .blip {
-                                    height: 0.6rem;
-                                    border-left: $abs-white solid 2px;
-                                    background-color: $abs-black;
-                                    position: relative;
-                                    -webkit-animation: blip 0.8s infinite, reveal 0.5s linear 1.2s forwards, select 0.1s linear 3s forwards, loading 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) 3.5s 3 forwards, zoom 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) 5s forwards;
-                                    animation: blip 0.8s infinite, reveal 0.5s linear 1.2s forwards, select 0.1s linear 3s forwards, loading 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) 3.5s 3 forwards, zoom 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) 5s forwards;
-                                }
-
-                                .top.blip {
-                                    top: 0;
-                                    -webkit-animation: blip 0.8s infinite, reveal 0.5s linear 1.2s forwards, select 0.1s linear 3s forwards, loading 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) 3.4s 3 forwards;
-                                    animation: blip 0.8s infinite, reveal 0.5s linear 1.2s forwards, select 0.1s linear 3s forwards, loading 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) 3.4s 3 forwards;
-                                }
-
-                                .bottom.blip {
-                                    bottom: 0;
-                                    -webkit-animation: blip 0.8s infinite, reveal 0.5s linear 1.2s forwards, select 0.1s linear 3s forwards, loading 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) 3.6s 3 forwards;
-                                    animation: blip 0.8s infinite, reveal 0.5s linear 1.2s forwards, select 0.1s linear 3s forwards, loading 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) 3.6s 3 forwards;
-                                }
-                            }
-
-                            //blipping animation like that of any text input
-                            @-webkit-keyframes blip {
-                                50% {
-                                    border-color: transparent;
-                                }
-                            }
-
-                            @keyframes blip {
-                                50% {
-                                    border-color: transparent;
-                                }
-                            }
-
-                            //revealing the Anh text
-                            @-webkit-keyframes reveal {
-                                30% {
-                                    transform: translateX(3rem);
-                                }
-
-                                60% {
-                                    transform: translateX(3.7rem);
-                                }
-
-                                100% {
-                                    transform: translateX(4.8rem);
-                                }
-                            }
-
-                            @keyframes reveal {
-                                30% {
-                                    transform: translateX(3rem);
-                                }
-
-                                60% {
-                                    transform: translateX(3.7rem);
-                                }
-
-                                100% {
-                                    transform: translateX(4.8rem);
-                                }
-                            }
-
-                            //covered the Anh text
-                            @-webkit-keyframes select {
-                                100% {
-                                    transform: translateX(0);
-                                    background-color: $abs-white;
-                                    border-top: $abs-white solid 2px;
-                                    border-bottom: $abs-white solid 2px;
-                                }
-                            }
-
-                            @keyframes select {
-                                100% {
-                                    transform: translateX(0);
-                                    background-color: $abs-white;
-                                    border-top: $abs-white solid 0.5px;
-                                    border-bottom: $abs-white solid 0.5px;
-                                }
-                            }
-
-                            //loading animation (wormy stuffs)
-                            @-webkit-keyframes loading {
-                                50% {
-                                    transform: scaleX(1.7);
-                                }
-                            }
-
-                            @keyframes loading {
-                                50% {
-                                    transform: scaleX(1.7);
-                                }
-                            }
-
-                            //zoom out to transist to main home page
-                            @-webkit-keyframes zoom {
-                                100% {
-                                    transform: scale(200, 200);
-                                }
-                            }
-
-                            @keyframes zoom {
-                                100% {
-                                    transform: scale(200, 200);
-                                }
-                            }
-                        }
-                    }
-
-                    //navbar
-                    .nav {
-                        @include center-parents();
-                        background-color: $abs-white;
-                        position: fixed;
-                        box-sizing: border-box;
+                    //descriptions
+                    .project-des {
+                        @include absolute-center();
+                        height: 100%;
                         width: 100%;
-                        z-index: 1200;
-                        padding-left: $nav-paddings;
-                        padding-right: $nav-paddings;
-                        height: $top;
-                        -webkit-animation: fade 1000ms cubic-bezier(0.165, 0.84, 0.44, 1) 200ms forwards;
-                        animation: fade 1000ms cubic-bezier(0.165, 0.84, 0.44, 1) 200ms forwards;
-                        opacity: 0;
+                        transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
 
-                        &:hover {
-                            ~.hero-contents {
-                                opacity: 0.2;
-                            }
-                        }
 
-                        //wrapper for header
-                        .smallheader-wrapper {
-                            @include center-parents();
-                            justify-content: space-between;
-                            height: $top;
-                            min-width: 10rem;
-                            position: relative;
-
-                            //the displaying section header on top left
-                            .section-smallheader {
-                                @include center-parents();
-                                position: relative;
-                                color: $abs-black;
-                                width: 100%;
-                                font-family: "Suranna", serif;
-
-                                //the main section (can include text OR holo ball)
-                                .main-text {
-                                    @include center-elements();
-                                    @include center-parents();
-                                    width: 100%;
-                                    position: relative;
-
-                                    //text config
-                                    p {
-                                        @include center-elements();
-                                        @include center-parents();
-                                        @include absolute-center();
-                                        text-align: center;
-                                        height: 1.3rem;
-                                        font-size: $med-text;
-                                        transition: all 200ms cubic-bezier(0.165, 0.84, 0.44, 1);
-                                    }
-                                }
-
-                                //section icons
-                                i {
-                                    transform: scale(1.3, 1.3);
-                                }
-
-
-                                // .bracket {
-                                //     transition: transform 200ms cubic-bezier(0.165, 0.84, 0.44, 1);
-                                //     font-size: 1.2rem;
-                                // }
-                            }
-                        }
-
-                        //the functional glasses
-                        .glasses {
-                            @include center-parents();
-                            @include absolute-center();
-                            width: 6.5rem;
-                            transform: scale(0.7, 0.7);
-                            transition: transform 1.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-
-                            //each glass
-                            .glass {
-                                width: 3rem;
-                                height: 2rem;
-                                border: solid $abs-black 2px;
-
-                                //each eyeball
-                                .eyeball {
-                                    position: relative;
-                                    width: 2rem;
-                                    height: 2rem;
-                                    margin: auto;
-                                    border-radius: 100%;
-                                    border: none;
-                                    transition: transform 20ms cubic-bezier(0.165, 0.84, 0.44, 1);
-
-                                    //the eye inside each eyeball
-                                    .eye {
-                                        @include absolute-center();
-                                        top: 0rem;
-                                        right: -0.9rem;
-                                        content: "";
-                                        width: 1rem;
-                                        height: 1rem;
-                                        margin: auto;
-                                        border-radius: 100%;
-                                        border: solid 1px $abs-black;
-                                        background: $abs-black;
-                                        transition: right 1s cubic-bezier(0.165, 0.84, 0.44, 1);
-                                    }
-                                }
-                            }
-
-                            .glass-left {
-                                border-bottom-right-radius: 20px;
-                                border-bottom-left-radius: 20px;
-                                border-top-right-radius: 10px;
-                                border-top-left-radius: 10px;
-                            }
-
-                            .glass-right {
-                                border-bottom-right-radius: 20px;
-                                border-bottom-left-radius: 20px;
-                                border-top-right-radius: 10px;
-                                border-top-left-radius: 10px;
-                            }
-
-                            .glass-connector {
-                                width: 0.8rem;
-                                height: 0.3rem;
-                                background-color: $abs-black;
-                                position: relative;
-                                top: -0.5rem;
-                            }
-
-                            @-webkit-keyframes fade {
-                                0% {
-                                    opacity: 0;
-                                }
-
-                                100% {
-                                    opacity: 1;
-                                }
-                            }
-
-                            @keyframes fade {
-                                0% {
-                                    opacity: 0;
-                                }
-
-                                100% {
-                                    opacity: 1;
-                                }
-                            }
-                        }
-
-                        //nav menu on desktop
-                        .nav-menu-desktop {
-                            @include center-parents();
-                            justify-content: space-between;
-
-                            a {
-                                margin-left: $normal-text;
-                                margin-top: 0;
-                                margin-bottom: 0;
-                                text-align: center;
-                                align-items: center;
-                                font-size: $normal-text;
-                                color: $abs-black;
-                                transition: all 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
-                                border-bottom: 3px solid $abs-white;
-
-                                &:hover {
-                                    border-color: $abs-black;
-                                }
-                            }
-                        }
-
-                        //the wrapper of nav-menu buttons vertically
-                        .nav-select {
-                            @include center-parents();
-                            z-index: 1200;
-
-                            //naving button menu
-                            button {
-                                border: none;
-                                background-color: transparent;
-                                padding: 0;
-                                outline: none;
-                                top: 0;
-                            }
-                        }
-
-                        //menu sticks (the menu hamburger symbol)
-                        .stick-figure {
-                            width: 2rem;
-                            position: relative;
-                            height: 1.5rem;
-                            margin: auto;
-                            text-align: center;
-                            cursor: pointer;
-
-                            .stick {
-                                @include absolute-center();
-                                width: 2rem;
-                                height: 0.15rem;
-                                background-color: $abs-black;
-                                transition: all 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
-                            }
-
-                            .top {
-                                @extend .stick;
-                                transform: translateY(0.4rem);
-                            }
-
-                            .bottom {
-                                @extend .stick;
-                                transform: translateY(-0.4rem);
-                            }
-
-                            .open.top {
-                                transform: rotate(45deg);
-                            }
-
-                            .open.bottom {
-                                transform: rotate(-45deg);
-                            }
-
-                            .open.mid {
-                                transform: translateX(-2rem) scale(0, 0);
-                            }
-                        }
-                    }
-
-                    //all the contents
-                    .hero-contents {
-                        transition: all 800ms cubic-bezier(0.165, 0.84, 0.44, 1);
-                    }
-
-                    //right-side-menu
-                    .slide-menu {
-                        @include center-parents();
-                        position: fixed;
-                        z-index: 1199;
-                        right: 0;
-                        bottom: 0;
-                        width: 30vw;
-                        min-height: 100vh;
-                        background-size: 300%;
-                        background-position: left;
-                        background-image: linear-gradient(to right, $dark-grey 60%, $abs-black 61%, $abs-black 100%);
-                        color: $abs-white;
-                        transition: all 800ms cubic-bezier(0.165, 0.84, 0.44, 1) 50ms;
-
-                        //the menu inside
-                        .menu-list-wrapper {
-                            @include center-elements();
-                            width: 100%;
-
-                            ul {
-                                list-style-type: none;
-                                padding-left: 30%;
-                                text-align: left;
-
-                                //each element
-                                li {
-                                    margin: 1rem 0;
-                                    transition: all 700ms cubic-bezier(0.165, 0.84, 0.44, 1);
-                                }
-
-                                .slideleft {
-                                    transform: translateX(0);
-                                }
-
-                                .slideright {
-                                    transform: translateX(10rem);
-                                }
-
-                                a {
-                                    color: $abs-white;
-                                    font-weight: bold;
-                                    text-decoration: none;
-                                    font-size: $med-text;
-                                    transition: all 0.1s ease;
-
-
-                                    &:hover {
-                                        border-bottom: 2px solid $abs-white;
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    //when menu is opened, show colorfill animation
-                    .openmenu.slide-menu {
-                        background-position: right;
-                    }
-
-                    //when closed, hide menu to 0 opacity and revert colorfill
-                    .collapse.slide-menu {
-                        width: 0;
-                        opacity: 0;
-                        background-position: left;
-                    }
-
-                    //Home section
-                    .home {
-                        @include section-config();
-                        @include center-parents();
-                        overflow: hidden;
-
-                        .heading-wrapper {
-                            position: relative;
-                            text-align: left;
-                            left: $nav-paddings;
-                            bottom: -5rem;
-
-                            //main headings
-                            h1 {
-                                margin: 0;
-                                transform: translateY(15rem); //initial transform; 
-                                font-size: $heading;
-                                font-weight: lighter;
-                                font-family: "Suranna", serif;
-                                -webkit-animation: floatup 800ms cubic-bezier(0.165, 0.84, 0.44, 1) 1000ms forwards;
-                                animation: floatup 800ms cubic-bezier(0.165, 0.84, 0.44, 1) 1000ms forwards;
-                            }
-
-                            // h5 {
-                            //     margin: 0;
-                            //     position: relative;
-                            //     transform: translateY(8rem); //initial transform
-                            //     font-size: 1.5rem;
-                            //     font-weight: lighter;
-                            //     animation: floatup 800ms cubic-bezier(0.165, 0.84, 0.44, 1) 1200ms forwards;
-                            // }
-
-                            .hider {
-                                height: 50vh;
-                                width: 100%;
-                                margin: 0 auto;
-                                background: $abs-white;
-                                position: absolute;
-
-                            }
-                        }
-
-                        @-webkit-keyframes floatup {
-                            0% {
-                                transform: translateY(10rem)
-                            }
-
-                            100% {
-                                transform: translateY(0)
-                            }
-                        }
-
-                        @keyframes floatup {
-                            0% {
-                                transform: translateY(10rem)
-                            }
-
-                            100% {
-                                transform: translateY(0)
-                            }
-                        }
-                    }
-
-                    //the ball with many rings(OLD) now just a button 
-                    .discover-ball {
-                        @include center-parents();
-                        height: 4.2rem;
-                        opacity: 0;
-                        -webkit-animation: fade 1200ms cubic-bezier(0.165, 0.84, 0.44, 1) 2000ms forwards;
-                        animation: fade 1200ms cubic-bezier(0.165, 0.84, 0.44, 1) 2000ms forwards;
-                        transform: translateY(-5vh);
-
-                        //actually there is a link wrapper
-                        a {
-                            margin-left: 0;
-                        }
-
-                        //styling for the text inside
-                        p {
-
-                            font-weight: lighter;
-                            font-size: $med-text;
-                            color: $abs-black  !important;
-                            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
-                            border-bottom: solid 3px $abs-white;
-                        }
-
-
-                        &:hover {
-                            p {
-                                border-color: $abs-black;
-                            }
-
-                            i {
-                                color: $orange;
-                            }
-                        }
-
-                    }
-
-                    //about section
-                    .about {
-                        @include section-config();
-                        @include center-parents();
-                        overflow: hidden;
-
-                        .picture-wrapper {
-                            width: 45vw;
-
-                            button {
-                                -webkit-animation: fade 2s cubic-bezier(0.165, 0.84, 0.44, 1) 2s forwards;
-                                animation: fade 2s cubic-bezier(0.165, 0.84, 0.44, 1) 2s forwards;
-                            }
-                        }
-
-                        .profile-picture {
-                            -o-object-fit: cover;
-                            object-fit: cover;
-                            position: relative;
-                            height: 28vw;
-                            width: 28vw;
-                            margin: 0 auto;
-                            background-image: url("./newava.jpg");
-                            background-size: 100%;
-                            background-repeat: no-repeat;
-                            background-position: center center;
-                            opacity: 1;
-
-                            div {
-                                @include absolute-center();
-                                box-sizing: border-box;
-                                width: 100%;
-                                height: 100%;
-                                border: $abs-black 2px solid;
-                                z-index: -1;
-
-                                &:nth-child(1) {
-                                    transform: translateX(1rem) translateY(1rem);
-                                }
-
-                                &:nth-child(2) {
-                                    transform: translateX(2rem) translateY(2rem);
-                                }
-
-
-                            }
-
-                        }
-
-
-
-                        .profile-description-wrapper {
-                            @include center-parents();
-                            height: 100vh;
-                            width: 55vw;
-
-                            .profile-description {
-                                @include center-elements();
-                                text-align: left;
-                                width: 70%;
-
-                                p {
-                                    font-size: calc(1.1*#{$normal-text});
-                                }
-
-                                .main-description {
-                                    color: $abs-black;
-                                    font-weight: bold;
-                                }
-
-                                .comment-description {
-                                    color: $dark-grey;
-                                }
-
-                                //a row full of icons 
-                                .stack-icon {
-                                    @include center-parents();
-                                    @include center-elements();
-                                    width: 80%;
-                                    margin-top: 1rem;
-                                    color: $dark-grey;
-
-                                    i {
-                                        @include med-icon();
-                                        transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
-                                    }
-
-                                    p {
-                                        font-size: $normal-text;
-                                        font-weight: bold;
-                                        transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
-                                    }
-
-                                    //config for each icon
-                                    .fa-react:hover {
-                                        color: $cyan-blue;
-
-                                        ~p {
-                                            color: $cyan-blue;
-                                        }
-                                    }
-
-                                    .fa-html5:hover {
-                                        color: $orange;
-
-                                        ~p {
-                                            color: $orange;
-                                        }
-                                    }
-
-                                    .fa-js-square:hover {
-                                        color: $yellow;
-
-                                        ~p {
-                                            color: $yellow;
-                                        }
-                                    }
-
-                                    .fa-python:hover {
-                                        color: $green;
-
-                                        ~p {
-                                            color: $green;
-                                        }
-                                    }
-
-                                    .fa-css3-alt:hover {
-                                        color: $blue;
-
-                                        ~p {
-                                            color: $blue;
-                                        }
-                                    }
-
-                                    .fa-camera-retro:hover {
-                                        color: $light-grey;
-
-                                        ~p {
-                                            color: $light-grey;
-                                        }
-                                    }
-
-                                    .fa-java:hover {
-                                        color: $orange;
-
-                                        ~p {
-                                            color: $orange;
-                                        }
-                                    }
-                                }
-
-                                //the camera one
-                                .single-stack {
-                                    justify-content: center;
-                                }
-                            }
-                        }
-                    }
-
-                    //projects section
-                    .projects {
-                        @include section-config();
-                        align-items: center;
-                        justify-content: center;
-                        position: relative;
-                        transition: all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
-
-                        //wrapping all the projects, a GRID
-                        .projects-frame {
+                        //display bar consists of github link
+                        .icon-wrapper {
                             position: absolute;
-                            top: 50%;
-                            left: 50%;
-                            transform: translateY(-50%) translateX(-50%);
-                            display: grid;
-                            grid-template-columns: $grid-side $grid-side $grid-side $grid-side;
-                            grid-template-rows: $grid-side $grid-side;
-                            column-gap: $column-gap;
-                            row-gap: calc(6*#{$column-gap});
-                            justify-content: center;
-                            align-items: center;
+                            bottom: 0;
+                            transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
 
-                            //wrapper for each of the project
-                            .project-wrapper {
-                                height: 100%;
-                                width: 100%;
-
-                                //config for each project
-                                .project {
-                                    @include center-elements();
-                                    height: 100%;
-
-
-                                    //frame for picture displayed (hide overflow stuff)
-                                    .picture-wrapper {
-                                        height: 100%;
-                                        width: 100%;
-                                        position: relative;
-                                        -webkit-filter: grayscale(100%);
-                                        filter: grayscale(100%);
-                                        transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-
-                                        //descriptions
-                                        .project-des {
-                                            @include absolute-center();
-                                            height: 100%;
-                                            width: 100%;
-                                            transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-
-
-                                            //display bar consists of github link
-                                            .icon-wrapper {
-                                                position: absolute;
-                                                bottom: 0;
-                                                transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-
-                                                h1 {
-                                                    //github text
-                                                    border: none;
-                                                    color: $abs-white;
-                                                    background: linear-gradient(to left, transparent 49%, $abs-black 50%, $abs-black 100%);
-                                                    background-size: 205% 100%;
-                                                    background-position: right;
-                                                    padding: 0.1rem 0.5rem;
-                                                    font-size: 1.5vw;
-                                                    opacity: 0;
-                                                    margin: 0;
-
-                                                }
-                                            }
-
-
-                                            //when hover the description
-                                            &:hover {
-                                                opacity: 0.9;
-
-                                                .icon-wrapper {
-                                                    h1 {
-                                                        background-position: left;
-                                                        opacity: 1;
-
-                                                        &:hover {
-                                                            i {
-                                                                color: $orange;
-                                                            }
-                                                        }
-                                                    }
-
-                                                }
-
-                                            }
-                                        }
-                                    }
-
-                                    //project heading
-                                    h1 {
-                                        position: relative;
-                                        width: fit-content;
-                                        margin: 0;
-                                        font-family: "Manrope", sans-serif;
-                                        font-weight: lighter;
-                                        font-size: 1.9vw;
-                                        letter-spacing: -1px;
-                                        align-items: center;
-                                        border-bottom: solid 3px white;
-                                        transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-                                        cursor: pointer;
-
-                                        &:hover {
-                                            border-color: $abs-black;
-
-                                            i {
-                                                color: $orange;
-                                            }
-                                        }
-                                    }
-
-                                }
+                            h1 {
+                                //github text
+                                border: none;
+                                color: $abs-white;
+                                background: linear-gradient(to left, transparent 49%, $abs-black 50%, $abs-black 100%);
+                                background-size: 205% 100%;
+                                background-position: right;
+                                padding: 0.1rem 0.5rem;
+                                font-size: 1.5vw;
+                                opacity: 0;
+                                margin: 0;
 
                             }
-
-                            //each project customization
-                            #wannaType {
-
-                                grid-column: 1 / span 2;
-                                grid-row: 1 / span 2;
-
-                                .picture-wrapper {
-                                    background-image: url("./wannatype.png");
-                                    background-position: center;
-                                    background-size: cover;
-                                }
-
-                            }
-
-                            #hcmusrobotics {
-
-                                grid-column: 3 / span 2;
-                                grid-row: 1 / 2;
-
-                                .picture-wrapper {
-                                    background-image: url("./hcmus.png");
-                                    background-position: 70% 10%;
-                                    background-size: 140%;
-                                }
-                            }
-
-                            #issuetracker {
-                                .picture-wrapper {
-                                    box-sizing: border-box;
-                                    background-image: url("./issue.png");
-                                    background-position: center;
-                                    background-size: 120%;
-                                }
-                            }
-
-                            #lawsofmotion {
-                                .picture-wrapper {
-                                    background-image: url("./laws.png");
-                                    background-position: center;
-                                    background-size: cover;
-                                }
-                            }
-
-                            // #covidtracker {
-                            //     background-image: url("./covidtracker.JPG");
-                            //     // transform: rotate(15deg) skew(-20deg) translateX(-30%) translateY(-8%);
-                            // }
-
                         }
 
 
+                        //when hover the description
+                        &:hover {
+                            opacity: 0.9;
 
-                    }
-
-                    //contact section
-                    .contacts {
-                        @include section-config();
-                        @include center-parents();
-                        min-height: 50vh;
-                        background: transparent;
-
-                        //main frame of the contents
-                        .contact-wrapper {
-                            margin: auto;
-                            width: calc(4*#{$grid-side} + 4*#{$column-gap}); //to align with the project;
-                            color: $abs-black;
-                            position: relative;
-                            text-align: left;
-
-                            //let's work together
-                            h1 {
-                                font-weight: lighter;
-                                font-size: calc(0.6*#{$heading});
-                                font-family: "Suranna", serif;
-                                margin: 0;
-
-                                span {
-                                    color: $orange;
-                                }
-                            }
-
-                            //link to the contact buttons
-                            .link-wrapper {
-                                display: flex;
-                                flex-direction: column;
-                                justify-content: start;
-
-                                a {
-                                    text-decoration: none;
-                                    color: $abs-black;
-                                    font-size: $med-text;
-                                    margin-right: $normal-text;
-                                    border-bottom: 3px solid $abs-white;
-                                    width: -webkit-fit-content;
-                                    width: -moz-fit-content;
-                                    width: fit-content;
-                                    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+                            .icon-wrapper {
+                                h1 {
+                                    background-position: left;
+                                    opacity: 1;
 
                                     &:hover {
-                                        border-color: $abs-black;
-
                                         i {
                                             color: $orange;
                                         }
                                     }
                                 }
+
                             }
 
-                            //copyright
-                            p {
-                                color: $dark-grey;
-                                margin: 2rem auto;
-                            }
                         }
                     }
+                }
 
-                    //animations for Transition Group
-                    .merge-enter {
-                        opacity: 0;
-                        transform: translateX(-2rem);
-                        @include absolute-center();
-                        color: $orange  !important;
-                    }
+                //project heading
+                h1 {
+                    position: relative;
+                    width: fit-content;
+                    margin: 0;
+                    font-family: "Manrope", sans-serif;
+                    font-weight: lighter;
+                    font-size: 1.9vw;
+                    letter-spacing: -1px;
+                    align-items: center;
+                    border-bottom: solid 3px white;
+                    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+                    cursor: pointer;
 
-                    .merge-enter.merge-enter-active {
-                        opacity: 1;
-                        transform: scale(1, 1);
-                        transition: all 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
-                    }
+                    &:hover {
+                        border-color: $abs-black;
 
-                    .merge-exit {
-                        opacity: 1;
-                        transform: scale(1, 1);
-                        @include absolute-center();
-                    }
-
-                    .merge-exit.merge-exit-active {
-                        opacity: 0;
-                        transform: scale(0, 0);
-                        transition: all 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
-                    }
-
-                    //aos custom animations
-                    [data-aos="pop-up"] {
-                        opacity: 0;
-                        transform: translateY(0);
-                        transition-property: all;
-
-                        &.aos-animate {
-                            transform: translateY(-30%);
-                            opacity: 1;
+                        i {
+                            color: $orange;
                         }
                     }
+                }
 
-                    [data-aos="color-reveal"] {
-                        transition-property: all;
-                        background-position: top !important;
+            }
 
-                        &.aos-animate {
-                            background-position: bottom !important;
-                        }
+        }
+
+        // //each project customization
+        // #wannaType {
+
+        //     grid-column: 1 / span 2;
+        //     grid-row: 1 / span 2;
+
+        //     .picture-wrapper {
+        //         background-image: url("./wannatype.png");
+        //         background-position: center;
+        //         background-size: cover;
+        //     }
+
+        // }
+
+        // #hcmusrobotics {
+
+        //     grid-column: 3 / span 2;
+        //     grid-row: 1 / 2;
+
+        //     .picture-wrapper {
+        //         background-image: url("./hcmus.png");
+        //         background-position: 70% 10%;
+        //         background-size: 140%;
+        //     }
+        // }
+
+        // #issuetracker {
+        //     .picture-wrapper {
+        //         box-sizing: border-box;
+        //         background-image: url("./issue.png");
+        //         background-position: center;
+        //         background-size: 120%;
+        //     }
+        // }
+
+        // #lawsofmotion {
+        //     .picture-wrapper {
+        //         background-image: url("./laws.png");
+        //         background-position: center;
+        //         background-size: cover;
+        //     }
+        // }
+
+        // #covidtracker {
+        //     background-image: url("./covidtracker.JPG");
+        //     // transform: rotate(15deg) skew(-20deg) translateX(-30%) translateY(-8%);
+        // }
+
+    }
+
+
+
+}
+
+//contact section
+.contacts {
+    @include section-config();
+    @include center-parents();
+    min-height: 50vh;
+    background: transparent;
+
+    //main frame of the contents
+    .contact-wrapper {
+        margin: auto;
+        width: calc(4*#{$grid-side} + 4*#{$column-gap}); //to align with the project;
+        color: $abs-black;
+        position: relative;
+        text-align: left;
+
+        //let's work together
+        h1 {
+            font-weight: lighter;
+            font-size: calc(0.6*#{$heading});
+            font-family: "Suranna", serif;
+            margin: 0;
+
+            span {
+                color: $orange;
+            }
+        }
+
+        //link to the contact buttons
+        .link-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+
+            a {
+                text-decoration: none;
+                color: $abs-black;
+                font-size: $med-text;
+                margin-right: $normal-text;
+                border-bottom: 3px solid $abs-white;
+                width: -webkit-fit-content;
+                width: -moz-fit-content;
+                width: fit-content;
+                transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+
+                &:hover {
+                    border-color: $abs-black;
+
+                    i {
+                        color: $orange;
                     }
+                }
+            }
+        }
 
-                    //////// MEDIA QUERIES ///////////////
-                    @media (max-width: 970px) {
-                        .slide-menu {
-                            //make burger menu full size
-                            width: 100vw;
-                        }
+        //copyright
+        p {
+            color: $dark-grey;
+            margin: 2rem auto;
+        }
+    }
+}
 
-                        .home {
-                            .heading-wrapper {
+//animations for Transition Group
+.merge-enter {
+    opacity: 0;
+    transform: translateX(-2rem);
+    @include absolute-center();
+    color: $orange !important;
+}
+
+.merge-enter.merge-enter-active {
+    opacity: 1;
+    transform: scale(1, 1);
+    transition: all 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.merge-exit {
+    opacity: 1;
+    transform: scale(1, 1);
+    @include absolute-center();
+}
+
+.merge-exit.merge-exit-active {
+    opacity: 0;
+    transform: scale(0, 0);
+    transition: all 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+//aos custom animations
+[data-aos="pop-up"] {
+    opacity: 0;
+    transform: translateY(0);
+    transition-property: all;
+
+    &.aos-animate {
+        transform: translateY(-30%);
+        opacity: 1;
+    }
+}
+
+[data-aos="color-reveal"] {
+    transition-property: all;
+    background-position: top !important;
+
+    &.aos-animate {
+        background-position: bottom !important;
+    }
+}
+
+//////// MEDIA QUERIES ///////////////
+@media (max-width: 1200px) {
+    .slide-menu {
+        //make burger menu full size
+        width: 100vw;
+    }
+
+    .home {
+        .heading-wrapper {
+            h1 {
+                font-size: calc(0.5*#{$heading});
+            }
+        }
+    }
+
+    .about {
+        flex-direction: column;
+        padding-top: $top;
+
+
+        .profile-picture {
+            position: relative;
+            height: 30vh;
+            width: $section-size-mobile !important; //match with description;
+
+            //hide the frames behind profile pic
+            div {
+                display: none;
+            }
+        }
+
+
+        .profile-description-wrapper {
+            .profile-description {
+                width: $section-size-mobile;
+                margin-top: 0;
+
+                p {
+                    font-size: calc(1.2*#{$normal_text});
+                }
+
+                .stack-icon {
+                    width: 100%;
+
+                    //the icon wrappers should have some spacings now
+                    p {
+                        font-size: $normal-text;
+                    }
+                }
+            }
+        }
+    }
+
+    .projects {
+        .projects-frame {
+            width: $section-size-mobile;
+            grid-template-columns: $section-size-mobile;
+            grid-template-rows: 18vh 18vh 18vh 18vh;
+            row-gap: 5vh;
+
+            .project-wrapper {
+                .project {
+                    .picture-wrapper {
+                        .project-des {
+                            .icon-wrapper {
                                 h1 {
-                                    font-size: calc(0.5*#{$heading});
+                                    font-size: calc(1.8*#{$normal-text});
                                 }
-                            }
-                        }
-
-                        .about {
-                            flex-direction: column;
-                            padding-top: $top;
-
-                            .picture-wrapper {
-                                width: 100vw;
-                                height: 40vh;
-                                background-position: center center;
-                                align-items: center;
-                                justify-content: end;
-
-                                .profile-picture {
-                                    position: relative;
-                                    top: 50%;
-                                    transform: translateY(-50%);
-                                    width: $section-size-mobile; //match with description;
-                                    height: 90%;
-
-                                    //hide the frames behind profile pic
-                                    div {
-                                        display: none;
-                                    }
-                                }
-                            }
-
-                            .profile-description-wrapper {
-                                @include small-frame();
-
-                                .profile-description {
-                                    width: $section-size-mobile;
-                                    margin-top: 0;
-
-                                    p {
-                                        font-size: calc(1.2*#{$normal_text});
-                                    }
-
-                                    .stack-icon {
-                                        width: 100%;
-
-                                        //the icon wrappers should have some spacings now
-                                        p {
-                                            font-size: $normal-text;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-
-                        .projects {
-                            .projects-frame {
-                                width: $section-size-mobile;
-                                grid-template-columns: $section-size-mobile;
-                                grid-template-rows: 18vh 18vh 18vh 18vh;
-                                row-gap: 5vh;
-
-                                .project-wrapper {
-                                    .project {
-                                        .picture-wrapper {
-                                            .project-des {
-                                                .icon-wrapper {
-                                                    h1 {
-                                                        font-size: calc(1.8*#{$normal-text});
-                                                    }
-                                                }
-                                            }
-                                        }
-
-                                    }
-                                }
-                            }
-
-                            .project-wrapper {
-                                @include medium-frame();
-                                grid-column: auto !important;
-                                grid-row: auto !important;
-
-                                .project {
-                                    h1.project-title {
-                                        font-size: calc(1.8*#{$normal-text});
-                                    }
-                                }
-
-                            }
-
-                        }
-
-                        .contacts {
-                            .contact-wrapper {
-                                width: $section-size-mobile  !important;
                             }
                         }
                     }
 
-                    //mobile users
-                    @media screen and (max-width: 586px) {
-                        .nav {
-                            .glasses {
-                                transform: scale(0.6, 0.6);
-                            }
-                        }
+                }
+            }
+        }
 
-                        .home {
-                            .heading-wrapper {
-                                h1 {
-                                    font-size: calc(0.4*#{$heading});
-                                }
-                            }
-                        }
+        .project-wrapper {
+            @include medium-frame();
+            grid-column: auto !important;
+            grid-row: auto !important;
 
-                        .about {
-                            .picture-wrapper {
-                                height: 35vh;
-                            }
+            .project {
+                h1.project-title {
+                    font-size: calc(1.8*#{$normal-text});
+                }
+            }
 
-                            .profile-description-wrapper {
-                                height: 65vh;
+        }
 
-                            }
+    }
 
-                            p {
-                                font-size: calc(1.1*#{$small-text}) !important;
-                            }
+    .contacts {
+        .contact-wrapper {
+            width: $section-size-mobile !important;
+        }
+    }
+}
 
-                        }
+//mobile users
+@media screen and (max-width: 586px) {
+    .nav {
+        .glasses {
+            transform: scale(0.6, 0.6);
+        }
+    }
 
-                        .projects {
-                            h1 {
-                                font-size: calc(1.5*#{$normal-text}) !important;
+    .home {
+        .heading-wrapper {
+            h1 {
+                font-size: calc(0.4*#{$heading});
+            }
+        }
+    }
 
-                            }
+    .about {
+        .picture-wrapper {
+            height: 35vh;
+        }
 
-                        }
+        .profile-description-wrapper {
+            height: 65vh;
 
-                        .contacts {
-                            .contact-wrapper {
-                                h1 {
-                                    font-size: calc(0.9*#{$big-text});
-                                }
-                            }
-                        }
+        }
 
-                        //aos custom animations
-                        [data-aos="pop-up"] {
-                            opacity: 0;
-                            transform: translateY(0);
-                            transition-property: all;
+        p {
+            font-size: calc(1.1*#{$small-text}) !important;
+        }
 
-                            &.aos-animate {
-                                transform: translateY(-10%);
-                                opacity: 1;
-                            }
-                        }
-                    }
+    }
+
+    .projects {
+        h1 {
+            font-size: calc(1.5*#{$normal-text}) !important;
+
+        }
+
+    }
+
+    .contacts {
+        .contact-wrapper {
+            h1 {
+                font-size: calc(0.9*#{$big-text});
+            }
+        }
+    }
+
+    //aos custom animations
+    [data-aos="pop-up"] {
+        opacity: 0;
+        transform: translateY(0);
+        transition-property: all;
+
+        &.aos-animate {
+            transform: translateY(-10%);
+            opacity: 1;
+        }
+    }
+}

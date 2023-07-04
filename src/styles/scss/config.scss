@@ -1,0 +1,115 @@
+//some default stuffs
+$light-grey: #B1BAC7;
+$dark-blue: #12111a;
+$abs-white: #FFFFFF;
+$abs-black: #000000;
+$cyan-blue: #91DEFB;
+$light-navy: #474559;
+$dark-grey: #858585;
+$orange: #b35e46;
+$yellow: #b3844f;
+$green: #77a186;
+$blue: #2c3cb0;
+$top: 80px;
+$heading: 100px;
+$small-text: 0.9em;
+$normal-text: 1em;
+$med-text: 1.5em;
+$big-text: 3em;
+$grid-side: 16vw;
+$column-gap: 0.5vw;
+$row-gap: 3vw;
+$nav-paddings: 5vw;
+$section-size-mobile: calc(100vw - 2*#{$nav-paddings});
+$font: 'Manrope';
+
+//config for every page (big section)
+@mixin section-config {
+    min-height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    font-family: $font, sans-serif;
+    background-color: $abs-white;
+    color: $abs-black;
+    overflow-x: hidden;
+}
+
+//for centered absolute div
+@mixin absolute-center {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+//center any div inside it
+@mixin center-parents {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: space-between;
+}
+
+//center on parents
+@mixin center-elements {
+    margin: auto;
+}
+
+@mixin medium-frame {
+    width: 100vw;
+    height: 70vh;
+}
+
+@mixin small-frame {
+    width: 100vw;
+    height: 55vh;
+}
+
+
+@mixin med-icon {
+    transform: scale(2.5, 2.5);
+}
+
+@mixin big-icon {
+    transform: scale(5, 5);
+}
+
+//config for big section
+html,
+body,
+.App {
+    @include section-config();
+}
+
+//Scrollbar settings
+html {
+
+    /* width */
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: $abs-black;
+    }
+
+}
+
+//make then links free from underline.
+a {
+    cursor: pointer;
+    text-decoration: none;
+
+    &:visited {
+        color: inherit;
+    }
+}
+
+//icons transition 
+i {
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}

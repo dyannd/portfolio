@@ -1,0 +1,141 @@
+@import './config.scss';
+
+//loading stuffs (first page when refresh)
+.loader {
+    @include section-config();
+    @include center-parents();
+    background: $abs-black;
+
+    //the centered section of the page
+    .compile-text-wrapper {
+        margin: auto;
+        width: 15rem;
+        height: 5rem;
+        transition: all 0.5s;
+        position: relative;
+
+        //My name
+        p {
+            @include absolute-center();
+            font-size: $med-text;
+            color: $abs-white;
+            height: 1.5rem;
+            cursor: pointer;
+        }
+
+        //the big blip is splitted into 3 smaller ones, each height of 0.6rem, for a total of 1.8rem
+        div {
+            @include absolute-center();
+            width: 5rem;
+            height: 1.8rem;
+
+            .blip {
+                height: 0.6rem;
+                border-left: $abs-white solid 2px;
+                background-color: $abs-black;
+                position: relative;
+                -webkit-animation: blip 0.8s infinite, reveal 0.5s linear 1.2s forwards, select 0.1s linear 3s forwards, loading 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) 3.5s 3 forwards, zoom 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) 5s forwards;
+                animation: blip 0.8s infinite, reveal 0.5s linear 1.2s forwards, select 0.1s linear 3s forwards, loading 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) 3.5s 3 forwards, zoom 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) 5s forwards;
+            }
+
+            .top.blip {
+                top: 0;
+                -webkit-animation: blip 0.8s infinite, reveal 0.5s linear 1.2s forwards, select 0.1s linear 3s forwards, loading 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) 3.4s 3 forwards;
+                animation: blip 0.8s infinite, reveal 0.5s linear 1.2s forwards, select 0.1s linear 3s forwards, loading 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) 3.4s 3 forwards;
+            }
+
+            .bottom.blip {
+                bottom: 0;
+                -webkit-animation: blip 0.8s infinite, reveal 0.5s linear 1.2s forwards, select 0.1s linear 3s forwards, loading 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) 3.6s 3 forwards;
+                animation: blip 0.8s infinite, reveal 0.5s linear 1.2s forwards, select 0.1s linear 3s forwards, loading 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) 3.6s 3 forwards;
+            }
+        }
+
+        //blipping animation like that of any text input
+        @-webkit-keyframes blip {
+            50% {
+                border-color: transparent;
+            }
+        }
+
+        @keyframes blip {
+            50% {
+                border-color: transparent;
+            }
+        }
+
+        //revealing the Anh text
+        @-webkit-keyframes reveal {
+            30% {
+                transform: translateX(3rem);
+            }
+
+            60% {
+                transform: translateX(3.7rem);
+            }
+
+            100% {
+                transform: translateX(4.8rem);
+            }
+        }
+
+        @keyframes reveal {
+            30% {
+                transform: translateX(3rem);
+            }
+
+            60% {
+                transform: translateX(3.7rem);
+            }
+
+            100% {
+                transform: translateX(4.8rem);
+            }
+        }
+
+        //covered the Anh text
+        @-webkit-keyframes select {
+            100% {
+                transform: translateX(0);
+                background-color: $abs-white;
+                border-top: $abs-white solid 2px;
+                border-bottom: $abs-white solid 2px;
+            }
+        }
+
+        @keyframes select {
+            100% {
+                transform: translateX(0);
+                background-color: $abs-white;
+                border-top: $abs-white solid 0.5px;
+                border-bottom: $abs-white solid 0.5px;
+            }
+        }
+
+        //loading animation (wormy stuffs)
+        @-webkit-keyframes loading {
+            50% {
+                transform: scaleX(1.7);
+            }
+        }
+
+        @keyframes loading {
+            50% {
+                transform: scaleX(1.7);
+            }
+        }
+
+        //zoom out to transist to main home page
+        @-webkit-keyframes zoom {
+            100% {
+                transform: scale(200, 200);
+            }
+        }
+
+        @keyframes zoom {
+            100% {
+                transform: scale(200, 200);
+            }
+        }
+    }
+}

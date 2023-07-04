@@ -1,0 +1,144 @@
+@import './config.scss';
+
+//about section
+.about {
+    @include section-config();
+
+    .picture-wrapper {
+        @include center-parents();
+
+        .profile-picture {
+            position: relative;
+            aspect-ratio: 1/1;
+            width: 80%;
+            opacity: 1;
+            margin: 0 auto;
+
+            img {
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+                -o-object-fit: cover;
+            }
+
+            /// the border frame behind the avater
+            div {
+                @include absolute-center();
+                box-sizing: border-box;
+                width: 100%;
+                height: 100%;
+                border: $abs-black 2px solid;
+                z-index: -1;
+                transform: translateX(15px) translateY(15px);
+
+                &:nth-child(2) {
+                    transform: translateX(30px) translateY(30px);
+                }
+            }
+
+        }
+    }
+
+
+    /// profile description on the right of the avatar
+    .profile-description-wrapper {
+        @include center-parents();
+
+        .profile-description {
+            @include center-elements();
+            font-family: $font, sans-serif;
+            text-align: left;
+            width: 80%;
+
+            p {
+                font-size: calc(1.1*#{$normal-text});
+            }
+
+            .main-description {
+                color: $abs-black;
+                font-weight: bold;
+            }
+
+            .comment-description {
+                color: $dark-grey;
+            }
+
+            //a row full of icons 
+            .stack-icon {
+                @include center-parents();
+                margin-top: 1rem;
+                color: $dark-grey;
+
+                i {
+                    //medium icon size
+                    @include med-icon();
+                    transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+                }
+
+                p {
+                    font-size: $normal-text;
+                    font-weight: bold;
+                    font-family: $font, sans-serif;
+                    transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+                }
+
+                //config for each icon
+                .fa-react:hover {
+                    color: $cyan-blue;
+
+                    ~p {
+                        color: $cyan-blue;
+                    }
+                }
+
+                .fa-html5:hover {
+                    color: $orange;
+
+                    ~p {
+                        color: $orange;
+                    }
+                }
+
+                .fa-js-square:hover {
+                    color: $yellow;
+
+                    ~p {
+                        color: $yellow;
+                    }
+                }
+
+                .fa-python:hover {
+                    color: $green;
+
+                    ~p {
+                        color: $green;
+                    }
+                }
+
+                .fa-css3-alt:hover {
+                    color: $blue;
+
+                    ~p {
+                        color: $blue;
+                    }
+                }
+
+                .fa-camera-retro:hover {
+                    color: $light-grey;
+
+                    ~p {
+                        color: $light-grey;
+                    }
+                }
+
+                .fa-java:hover {
+                    color: $orange;
+
+                    ~p {
+                        color: $orange;
+                    }
+                }
+            }
+        }
+    }
+}

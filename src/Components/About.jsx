@@ -1,26 +1,20 @@
+import { Col, Row } from 'antd';
 import React from 'react';
+import ava from '../styles/images/newava.jpg';
 function About({ width }) {
     return (
-        <section id="About" className="about">
-            <div className="picture-wrapper" data-aos="fade-right" data-aos-duration="1500"
+        <Row id="About" className="about" gutter={[0, 50]}>
+            <Col className="picture-wrapper" data-aos="fade-right" data-aos-duration="1500"
+                xs={24} xl={10}
                 data-aos-anchor-placement="center-bottom" style={{ position: "relative" }}>
                 <div className="profile-picture">
+                    <img src={ava} alt="" />
                     <div></div><div></div>
                 </div>
-                {/* {width <= 586 ?
-                    <button className="button-wrapper" data-aos="fade-right" data-aos-duration="1700"
-                        data-aos-anchor-placement="center-bottom"
-                        onClick={() => window.open('https://drive.google.com/file/d/1GDmu2euJoRUbRYr_YZTY4VTh0qqEncVD/view?usp=sharing', '_blank')}
-                        style={{ position: "absolute", left: "2rem", bottom: "0.5rem", transform: "scale(0.9,0.9)" }}>
-                        <div className="button-colorfill">
+            </Col>
 
-                        </div>
-                    </button>
-                    : null} */}
-
-            </div>
-
-            <div className="profile-description-wrapper">
+            <Col className="profile-description-wrapper"
+                xs={24} xl={14}>
                 <div className="profile-description">
                     <p className="main-description" data-aos="fade-up" data-aos-duration="1000">
                         {"I'm Anh, a 22 years-old Engineering student who loves to explore new concepts.I love doing works involving problem-solving/critical-thinking, and also make things aesthetically pleasing too ;) "}
@@ -39,50 +33,34 @@ function About({ width }) {
                         // What I know:
                     </p>
                     <div className="stack-icon" data-aos="fade-up" data-aos-duration="1800">
-                        <div className="icon-wrapper">
+                        <Col className="icon-wrapper" span={4}>
                             <i className="fab fa-react"></i>
                             <p>React.js</p>
-                        </div>
-                        <div className="icon-wrapper">
+                        </Col>
+                        <Col className="icon-wrapper" span={4}>
                             <i className="fab fa-js-square"></i>
                             <p>Javascript</p>
-                        </div>
-                        <div className="icon-wrapper">
+                        </Col>
+                        <Col className="icon-wrapper" span={4}>
                             <i className="fab fa-html5"></i>
                             <p>HTML</p>
-                        </div>
-                        <div className="icon-wrapper">
+                        </Col>
+                        <Col className="icon-wrapper" span={4}>
                             <i className="fab fa-css3-alt"></i>
                             <p>CSS</p>
-                        </div>
-                        <div className="icon-wrapper">
+                        </Col>
+                        <Col className="icon-wrapper" span={4}>
                             <i className="fab fa-python"></i>
                             <p>Python</p>
-                        </div>
-                        <div className="icon-wrapper">
+                        </Col>
+                        <Col className="icon-wrapper" span={4}>
                             <i className="fab fa-java"></i>
                             <p>Java</p>
-                        </div>
+                        </Col>
                     </div>
-                    {/* <div className="stack-icon single-stack" >
-                        <div className="icon-wrapper" data-aos="fade-up" data-aos-duration="2000">
-                            <i className="fas fa-camera-retro"></i>
-                            <p className="art-stack">
-                                Lightroom, CaptureOne, Davinci Resolve
-                            </p>
-                        </div>
-                    </div> */}
-                    {/* {width > 586 ?
-                        <div className="stack-icon single-stack button-stack" data-aos="fade-up" data-aos-duration="2000">
-                            <div className="button-colorfill"
-                                onClick={() => window.open('https://drive.google.com/file/d/1GDmu2euJoRUbRYr_YZTY4VTh0qqEncVD/view?usp=sharing', '_blank')}>
-                                resume
-                            </div>
-                        </div> : null} */}
-
                 </div>
-            </div>
-        </section>
+            </Col>
+        </Row>
     )
 }
 

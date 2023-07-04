@@ -1,0 +1,295 @@
+@import './config.scss';
+
+//navbar
+.nav {
+    @include center-parents();
+    background-color: $abs-white;
+    position: fixed;
+    box-sizing: border-box;
+    width: 100%;
+    z-index: 1200;
+    padding-left: $nav-paddings;
+    padding-right: $nav-paddings;
+    height: $top;
+    -webkit-animation: fade 1000ms cubic-bezier(0.165, 0.84, 0.44, 1) 200ms forwards;
+    animation: fade 1000ms cubic-bezier(0.165, 0.84, 0.44, 1) 200ms forwards;
+    opacity: 0;
+
+    &:hover {
+
+        //blur the contents when we hover on nav
+        ~.hero-contents {
+            opacity: 0.2;
+        }
+    }
+
+    //wrapper for header (the text changing every section
+    .smallheader-wrapper {
+        @include center-parents();
+        justify-content: space-between;
+        height: $top;
+        min-width: 10rem;
+        position: relative;
+
+        //the displaying section header on top left
+        .section-smallheader {
+            @include center-parents();
+            position: relative;
+            color: $abs-black;
+            width: 100%;
+            font-family: "Suranna", serif;
+
+            //the main section (can include text OR holo ball)
+            .main-text {
+                @include center-elements();
+                @include center-parents();
+                width: 100%;
+                position: relative;
+
+                //text config
+                p {
+                    @include center-elements();
+                    @include center-parents();
+                    @include absolute-center();
+                    text-align: center;
+                    height: 1.3rem;
+                    font-size: $med-text;
+                    transition: all 200ms cubic-bezier(0.165, 0.84, 0.44, 1);
+                }
+            }
+
+            //section icons
+            i {
+                transform: scale(1.3, 1.3);
+            }
+        }
+    }
+
+    //the functional glasses
+    .glasses {
+        @include center-parents();
+        @include absolute-center();
+        width: 6.5rem;
+        transform: scale(0.7, 0.7);
+        transition: transform 1.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+
+        //each glass
+        .glass {
+            width: 3rem;
+            height: 2rem;
+            border: solid $abs-black 2px;
+
+            //each eyeball
+            .eyeball {
+                position: relative;
+                width: 2rem;
+                height: 2rem;
+                margin: auto;
+                border-radius: 100%;
+                border: none;
+                transition: transform 20ms cubic-bezier(0.165, 0.84, 0.44, 1);
+
+                //the eye inside each eyeball
+                .eye {
+                    @include absolute-center();
+                    top: 0rem;
+                    right: -0.9rem;
+                    content: "";
+                    width: 1rem;
+                    height: 1rem;
+                    margin: auto;
+                    border-radius: 100%;
+                    border: solid 1px $abs-black;
+                    background: $abs-black;
+                    transition: right 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+                }
+            }
+        }
+
+        .glass-left {
+            border-bottom-right-radius: 20px;
+            border-bottom-left-radius: 20px;
+            border-top-right-radius: 10px;
+            border-top-left-radius: 10px;
+        }
+
+        .glass-right {
+            border-bottom-right-radius: 20px;
+            border-bottom-left-radius: 20px;
+            border-top-right-radius: 10px;
+            border-top-left-radius: 10px;
+        }
+
+        .glass-connector {
+            width: 0.8rem;
+            height: 0.3rem;
+            background-color: $abs-black;
+            position: relative;
+            top: -0.5rem;
+        }
+
+        @-webkit-keyframes fade {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fade {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+    }
+
+    //nav menu on desktop
+    .nav-menu-desktop {
+        @include center-parents();
+        justify-content: space-between;
+
+        a {
+            margin-left: $normal-text;
+            margin-top: 0;
+            margin-bottom: 0;
+            text-align: center;
+            align-items: center;
+            font-size: $normal-text;
+            color: $abs-black;
+            transition: all 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
+            border-bottom: 3px solid $abs-white;
+
+            &:hover {
+                border-color: $abs-black;
+            }
+        }
+    }
+
+    //the wrapper of nav-menu buttons vertically
+    .nav-select {
+        @include center-parents();
+        z-index: 1200;
+
+        //naving button menu
+        button {
+            border: none;
+            background-color: transparent;
+            padding: 0;
+            outline: none;
+            top: 0;
+        }
+    }
+
+    //menu sticks (the menu hamburger symbol)
+    .stick-figure {
+        width: 2rem;
+        position: relative;
+        height: 1.5rem;
+        margin: auto;
+        text-align: center;
+        cursor: pointer;
+
+        .stick {
+            @include absolute-center();
+            width: 2rem;
+            height: 0.15rem;
+            background-color: $abs-black;
+            transition: all 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .top {
+            @extend .stick;
+            transform: translateY(0.4rem);
+        }
+
+        .bottom {
+            @extend .stick;
+            transform: translateY(-0.4rem);
+        }
+
+        .open.top {
+            transform: rotate(45deg);
+        }
+
+        .open.bottom {
+            transform: rotate(-45deg);
+        }
+
+        .open.mid {
+            transform: translateX(-2rem) scale(0, 0);
+        }
+    }
+}
+
+//right-side-menu on smaller screens
+.slide-menu {
+    @include center-parents();
+    position: fixed;
+    z-index: 1199;
+    right: 0;
+    bottom: 0;
+    width: 30vw;
+    min-height: 100vh;
+    background-size: 300%;
+    background-position: left;
+    background-image: linear-gradient(to right, $dark-grey 60%, $abs-black 61%, $abs-black 100%);
+    color: $abs-white;
+    transition: all 800ms cubic-bezier(0.165, 0.84, 0.44, 1) 50ms;
+
+    //the menu inside
+    .menu-list-wrapper {
+        @include center-elements();
+        width: 100%;
+
+        ul {
+            list-style-type: none;
+            padding-left: 30%;
+            text-align: left;
+
+            //each element
+            li {
+                margin: 1rem 0;
+                transition: all 700ms cubic-bezier(0.165, 0.84, 0.44, 1);
+            }
+
+            .slideleft {
+                transform: translateX(0);
+            }
+
+            .slideright {
+                transform: translateX(10rem);
+            }
+
+            a {
+                color: $abs-white;
+                font-weight: bold;
+                text-decoration: none;
+                font-size: $med-text;
+                transition: all 0.1s ease;
+
+
+                &:hover {
+                    border-bottom: 2px solid $abs-white;
+                }
+            }
+        }
+    }
+}
+
+//when menu is opened, show colorfill animation
+.openmenu.slide-menu {
+    background-position: right;
+}
+
+//when closed, hide menu to 0 opacity and revert colorfill
+.collapse.slide-menu {
+    width: 0;
+    opacity: 0;
+    background-position: left;
+}
