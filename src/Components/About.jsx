@@ -17,7 +17,8 @@ function About({ width }) {
                 xs={24} xl={14}>
                 <div className="profile-description">
                     <p className="main-description" data-aos="fade-up" data-aos-duration="1000">
-                        {"I'm Anh, a 22 years-old Engineering student who loves to explore new concepts.I love doing works involving problem-solving/critical-thinking, and also make things aesthetically pleasing too ;) "}
+                        I'm Anh, a 22 years-old Engineering student who loves to explore new concepts.
+                        I love doing works involving problem-solving/critical-thinking, and also make things aesthetically pleasing too {":)"}
                     </p>
                     <p className="comment-description" data-aos="fade-up" data-aos-duration="1400">
                         // I am currently learning web development, with a

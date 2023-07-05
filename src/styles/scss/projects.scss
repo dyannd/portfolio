@@ -1,0 +1,169 @@
+@import './config.scss';
+
+//projects section
+.projects {
+    @include section-config();
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+
+    //wrapping all the projects, like a big box
+    .projects-frame {
+        width: 900px;
+        margin: calc(#{$top}) auto;
+
+        //wrapper for each of the project
+        .project-wrapper {
+            height: 350px;
+            margin-top: $row-gap;
+
+            //config for each project
+            .project {
+                @include center-elements();
+                height: 100%;
+
+                //frame for picture displayed (hide overflow stuff)
+                .picture-wrapper {
+                    height: 80%;
+                    width: 100%;
+                    position: relative;
+                    -webkit-filter: grayscale(100%);
+                    filter: grayscale(100%);
+                    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+
+                    //descriptions
+                    .project-des {
+                        @include absolute-center();
+                        height: 100%;
+                        width: 100%;
+                        transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+
+
+                        //display bar consists of github link
+                        .icon-wrapper {
+                            position: absolute;
+                            bottom: 0;
+                            transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+
+                            h1 {
+                                //github text
+                                border: none;
+                                color: $abs-white;
+                                background: linear-gradient(to left, transparent 49%, $abs-black 50%, $abs-black 100%);
+                                background-size: 205% 100%;
+                                background-position: right;
+                                padding: 0.4rem 0.9rem;
+                                font-size: $med-text;
+                                opacity: 0;
+                                margin: 0;
+                            }
+                        }
+
+
+                        //when hover the description
+                        &:hover {
+                            opacity: 0.9;
+
+                            .icon-wrapper {
+                                h1 {
+                                    background-position: left;
+                                    opacity: 1;
+
+                                    &:hover {
+                                        i {
+                                            color: $orange;
+                                        }
+                                    }
+                                }
+
+                            }
+
+                        }
+                    }
+                }
+
+                //project heading
+                h1 {
+                    position: relative;
+                    width: fit-content;
+                    margin: 0;
+                    font-family: $font, sans-serif;
+                    font-weight: lighter;
+                    font-size: $med-text;
+                    letter-spacing: -1px;
+                    align-items: center;
+                    border-bottom: solid 3px $abs-white;
+                    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+                    cursor: pointer;
+
+                    &:hover {
+                        border-color: $abs-black;
+
+                        i {
+                            color: $orange;
+                        }
+                    }
+                }
+
+            }
+
+        }
+
+        //each project customization
+        #cvhtech {
+            .picture-wrapper {
+                background-image: url("../images/cvhtech.png");
+                background-position: center;
+                background-size: cover;
+            }
+        }
+
+        #wannaType {
+            .picture-wrapper {
+                background-image: url("../images/wannatype.png");
+                background-position: center;
+                background-size: cover;
+            }
+
+        }
+
+        #hcmusrobotics {
+            .picture-wrapper {
+                background-image: url("../images/hcmus.png");
+                background-position: 70% 10%;
+                background-size: 140%;
+            }
+        }
+
+        #issuetracker {
+            .picture-wrapper {
+                box-sizing: border-box;
+                background-image: url("../images/issue.png");
+                background-position: center;
+                background-size: 120%;
+            }
+        }
+
+        #lawsofmotion {
+            .picture-wrapper {
+                background-image: url("../images/laws.png");
+                background-position: center;
+                background-size: cover;
+            }
+        }
+
+        #covidtracker {
+            .picture-wrapper {
+                background-image: url("../images/covidtracker.JPG");
+                background-position: center;
+                background-size: cover;
+            }
+
+        }
+
+    }
+
+
+
+}

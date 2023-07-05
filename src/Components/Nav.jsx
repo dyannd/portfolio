@@ -1,12 +1,13 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-scroll';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 function Nav(props) {
     const [openMenu, setOpenMenu] = useState(false);
     const [currentPath, setCurrentPath] = useState("");
     const width = props.width;
     const prevPath = useRef("");
+    const duration = 800;
     useEffect(() => {
         setCurrentPath(props.section);
         prevPath.current = currentPath;
@@ -17,24 +18,16 @@ function Nav(props) {
         <div className="nav">
             <div className="smallheader-wrapper">
                 <div className="section-smallheader">
-                    {/* <p className="bracket bracket-left">{"<"}</p> */}
                     <TransitionGroup className="main-text">
                         <CSSTransition key={currentPath} classNames="merge" timeout={300}>
-                            {/* {currentPath === "holo" ? <figure className="holo-dot"></figure> */}
                             {currentPath === "Home" ? <p >Welcome!</p> :
                                 currentPath === "About" ? <p>{'Who I am'}</p> :
                                     currentPath === "Projects" ? <p>What I made</p> :
                                         currentPath === "Contacts" ? <p>Contact me</p> : <p></p>}
-                                    
-                            
                         </CSSTransition>
                     </TransitionGroup>
-                    {/* <p className="bracket bracket-right">{"/>"}</p> */}
-        
                 </div>
             </div>
-
-
 
             <div className="glasses">
                 <div className="glass glass-left">
@@ -60,7 +53,7 @@ function Nav(props) {
                         >
                             <Link to="Home"
                                 smooth="easeInOutCubic"
-                                duration={2500}
+                                duration={duration}
                                 onClick={() => {
                                     setOpenMenu(prev => !prev);
                                 }}> Home
@@ -71,7 +64,7 @@ function Nav(props) {
                         >
                             <Link to="About"
                                 smooth="easeInOutCubic"
-                                duration={2500}
+                                duration={duration}
                                 onClick={() => {
                                     setOpenMenu(prev => !prev);
                                 }}> About
@@ -82,7 +75,7 @@ function Nav(props) {
                         >
                             <Link to="Projects"
                                 smooth="easeInOutCubic"
-                                duration={2500}
+                                duration={duration}
                                 onClick={() => {
                                     setOpenMenu(prev => !prev);
                                 }}>
@@ -105,7 +98,7 @@ function Nav(props) {
                         >
                             <Link to="Contacts"
                                 smooth="easeInOutCubic"
-                                duration={2500}
+                                duration={duration}
                                 onClick={() => {
                                     setOpenMenu(prev => !prev);
                                 }}>Contacts</Link>
@@ -114,21 +107,23 @@ function Nav(props) {
                 </div>
             </div>
 
-            {width > 1000 ?
+            {width > 1200 ?
                 <div className="nav-menu-desktop">
                     <Link to="Home"
                         smooth="easeInOutCubic"
-                        duration={2500}
+                        duration={duration}
                     > Home
                     </Link>
                     <Link to="About"
                         smooth="easeInOutCubic"
-                        duration={2500}>
+                        duration={duration}
+                    >
                         About
                     </Link>
                     <Link to="Projects"
                         smooth="easeInOutCubic"
-                        duration={2500}>
+                        duration={duration}
+                    >
                         Projects
                     </Link>
                     {/* <Link to="Gallery"
@@ -138,7 +133,8 @@ function Nav(props) {
                     </Link> */}
                     <Link to="Contacts"
                         smooth="easeInOutCubic"
-                        duration={2500}>
+                        duration={duration}
+                    >
                         Contacts
                     </Link>
                 </div>

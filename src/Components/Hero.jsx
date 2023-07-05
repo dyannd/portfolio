@@ -1,20 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import Nav from './Nav.jsx'
-import Loader from './Loader.jsx';
-import Home from './Home';
-import About from './About';
-import Projects from './Projects';
-import Gallery from './Gallery';
-import Contacts from './Contacts';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import React, { useEffect, useState } from 'react';
+import About from './About';
+import Contacts from './Contacts';
+import Home from './Home';
+import Loader from './Loader.jsx';
+import Nav from './Nav.jsx';
+import Projects from './Projects';
 
 function Hero() {
     const [isLoading, setIsLoading] = useState(true);
     const [sectionText, setSectionText] = useState("Home")
-    const [trailHeight, setTrailHeight] = useState("");
-    const [showHolo, setShowHolo] = useState(false);
-    const [trailTop, setTrailTop] = useState(0);
     const [width, setWidth] = useState(window.innerWidth);
 
     useEffect(() => {
@@ -26,10 +22,6 @@ function Hero() {
 
             //query for the sections
             let about = document.getElementById("About");
-            let ball = document.getElementsByClassName("discover-ball")[0];
-            let header = document.getElementsByClassName("smallheader-wrapper")[0];
-            let glasses = document.getElementsByClassName("glasses")[0];
-            let eye = document.querySelectorAll(".eye");
             let project = document.getElementById("Projects");
             let contact = document.getElementById("Contacts");
 
@@ -51,38 +43,28 @@ function Hero() {
                     project.style.opacity = "1";
                 }
 
-                //when reaching the PROJECT section (formerly Gallery)
+                //when reaching the PROJECT section
                 else if (window.scrollY >= offsetProject - 1) {
                     setSectionText("Projects");
                 }
 
                 //close the brackets getting past ABOUT
                 else if (window.scrollY >= 4 * offsetProject / 5) {
-                    // transformBracket("1.8rem", "-1.8rem");
-                    // header.style.width = "5.5rem";
                     setSectionText("");
                 }
 
                 //when reaching the about section;
                 else if (window.scrollY >= offsetAbout - 1) {
-                    // transformBracket(0, 0);
                     setSectionText("About");
-                    //set trail back to none and hide the holo ball
-                    setTrailHeight(0 + "px");
-                    setShowHolo(false);
                 }
 
                 //SCROLLING PAST HOME SECTION
                 else if (window.scrollY >= 4 * offsetAbout / 5) {
                     setSectionText("");
-                    // transformBracket("1.8rem", "-1.8rem");
                 }
                 //at home
                 else {
                     setSectionText("Home");
-                    // transformBracket(0, 0);
-                    setTrailHeight("0px");
-                    setShowHolo(false);
                 }
             })
 
@@ -126,7 +108,7 @@ function Hero() {
                 <div onMouseMove={handleMouseMove}>
                     <Nav section={sectionText} width={width} />
                     <div className="hero-contents">
-                        <Home showHolo={showHolo} />
+                        <Home />
                         {/* <section className="trail-wrapper" style={{ top: trailTop }}>
                             <figure style={{ height: trailHeight }} id="trail">
                             </figure>

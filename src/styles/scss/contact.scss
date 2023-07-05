@@ -1,0 +1,62 @@
+@import './config.scss';
+
+//contact section
+.contacts {
+    @include section-config();
+    @include center-parents();
+    min-height: 70vh;
+
+    //main frame of the contents
+    .contact-wrapper {
+        margin: auto;
+        width: calc(4*#{$grid-side} + 4*#{$column-gap}); //to align with the project;
+        color: $abs-black;
+        position: relative;
+        text-align: left;
+
+        //let's work together
+        h1 {
+            font-weight: lighter;
+            font-size: calc(0.6*#{$heading});
+            font-family: "Suranna", serif;
+            margin: 0;
+
+            span {
+                color: $orange;
+            }
+        }
+
+        //link to the contact buttons
+        .link-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+
+            a {
+                text-decoration: none;
+                color: $abs-black;
+                font-size: $med-text;
+                margin-right: $normal-text;
+                border-bottom: 3px solid $abs-white;
+                width: -webkit-fit-content;
+                width: -moz-fit-content;
+                width: fit-content;
+                transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+
+                &:hover {
+                    border-color: $abs-black;
+
+                    i {
+                        color: $orange;
+                    }
+                }
+            }
+        }
+
+        //copyright
+        p {
+            color: $dark-grey;
+            margin: 2rem auto;
+        }
+    }
+}

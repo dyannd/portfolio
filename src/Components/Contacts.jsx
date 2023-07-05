@@ -1,6 +1,7 @@
 import React from 'react';
 
 function Contacts() {
+    const year = new Date().getFullYear();
     return (
         <section id="Contacts" className="contacts"
             data-aos="pop-up" data-aos-offset="300"
@@ -30,7 +31,7 @@ function Contacts() {
                     </a>
 
                 </div>
-                <p>© Anh D Nguyen 2022</p>
+                <p>© Anh D Nguyen {year}</p>
             </div>
         </section >
     )

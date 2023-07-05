@@ -10,7 +10,7 @@
         .profile-picture {
             position: relative;
             aspect-ratio: 1/1;
-            width: 80%;
+            width: 60%;
             opacity: 1;
             margin: 0 auto;
 
@@ -51,15 +51,15 @@
             width: 80%;
 
             p {
-                font-size: calc(1.1*#{$normal-text});
+                font-size: $normal-text;
             }
 
-            .main-description {
+            p.main-description {
                 color: $abs-black;
                 font-weight: bold;
             }
 
-            .comment-description {
+            p.comment-description {
                 color: $dark-grey;
             }
 
@@ -69,14 +69,13 @@
                 margin-top: 1rem;
                 color: $dark-grey;
 
-                i {
-                    //medium icon size
+                i { ///application icons
                     @include med-icon();
                     transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
                 }
 
-                p {
-                    font-size: $normal-text;
+                p { ///application description
+                    font-size: $small-text;
                     font-weight: bold;
                     font-family: $font, sans-serif;
                     transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
